@@ -42,6 +42,7 @@ namespace GreaterGradesBackend.Api.Configuration
             CreateMap<Institution, InstitutionDto>().ReverseMap();
             CreateMap<CreateInstitutionDto, Institution>();
             CreateMap<UpdateInstitutionDto, Institution>();
+
         }
     }
 }

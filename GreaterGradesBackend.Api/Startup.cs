@@ -50,7 +50,7 @@ namespace GreaterGradesBackend.Api
             services.AddScoped<IClassService, ClassService>();
             services.AddScoped<IAssignmentService, AssignmentService>();
             services.AddScoped<IGradeService, GradeService>();
-            services.AddScoped<IInstitutionService, InstituiontService>();
+            services.AddScoped<IInstitutionService, InstitutionService>();
 
 
             // Register the password hasher

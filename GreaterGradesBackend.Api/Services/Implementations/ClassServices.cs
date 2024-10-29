@@ -39,6 +39,11 @@ namespace GreaterGradesBackend.Services.Implementations
         public async Task<ClassDto> CreateClassAsync(CreateClassDto createClassDto)
         {
             var classEntity = _mapper.Map<Class>(createClassDto);
+            var existingInstitution = await _unitOfWork.Institutions.GetInstitutionWithDetailsAsync(createUserDto.InstitutionId);
+            if (existingInstitution == null)
+            {
+                throw new Exception("Institution does not exist");
+            }
             await _unitOfWork.Classes.AddAsync(classEntity);
             await _unitOfWork.CompleteAsync();
             return _mapper.Map<ClassDto>(classEntity);

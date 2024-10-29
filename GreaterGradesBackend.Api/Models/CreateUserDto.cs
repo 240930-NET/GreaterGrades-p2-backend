@@ -21,5 +21,8 @@ namespace GreaterGradesBackend.Api.Models
         
         [MaxLength(50)]
         public string Role { get; set; }
+
+        [Required]
+        public int InstitutionId { get; set; }
     }
 }

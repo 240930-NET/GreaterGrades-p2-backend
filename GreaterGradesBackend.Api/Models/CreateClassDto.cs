@@ -7,5 +7,8 @@ namespace GreaterGradesBackend.Api.Models
         [Required]
         [MaxLength(50)]
         public string Subject { get; set; }
+
+        [Required]
+        public int InstitutionId { get; set; }
     }
 }

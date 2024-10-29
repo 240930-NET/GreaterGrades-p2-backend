@@ -52,9 +52,14 @@ namespace GreaterGradesBackend.Services.Implementations
         {
             // Check if the username already exists
             var existingUser = await _unitOfWork.Users.GetUserByUsernameAsync(createUserDto.Username);
+            var existingInstitution = await _unitOfWork.Institutions.GetInstitutionWithDetailsAsync(createUserDto.InstitutionId);
             if (existingUser != null)
             {
                 throw new Exception("Username already exists.");
+            }
+            if (existingInstitution == null)
+            {
+                throw new Exception("Institution does not exist");
             }
 
             // Create a new User entity
@@ -62,6 +67,7 @@ namespace GreaterGradesBackend.Services.Implementations
             user.PasswordHash = _passwordHasher.HashPassword(user, createUserDto.Password); // Hash the password
 
             await _unitOfWork.Users.AddAsync(user);
+
             await _unitOfWork.CompleteAsync();
 
             return _mapper.Map<UserDto>(user);

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace GreaterGradesBackend.Api.Models
 {
-    public class CreateInstituitonDto
+    public class CreateInstitutionDto
     {
         public string Name { get; set; }
     }
