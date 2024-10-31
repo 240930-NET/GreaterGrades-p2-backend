@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreaterGradesBackend.Infrastructure.Migrations
 {
     [DbContext(typeof(GreaterGradesBackendDbContext))]
-    [Migration("20241027195114_InitialCreate")]
+    [Migration("20241031143142_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -142,10 +142,8 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()

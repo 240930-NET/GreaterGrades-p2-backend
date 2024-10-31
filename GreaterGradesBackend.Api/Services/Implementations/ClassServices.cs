@@ -109,6 +109,13 @@ namespace GreaterGradesBackend.Services.Implementations
 
             return true;
         }
+
+
+        public async Task<IEnumerable<Class>> GetClassesByInstitutionIdAsync(int institutionId)
+        {
+            return await _unitOfWork.Classes.GetClassesByInstitutionIdAsync(institutionId);
+        }
+
         public async Task<bool> AddTeacherToClassAsync(int classId, int userId)
         {
             var classEntity = await _unitOfWork.Classes.GetClassWithDetailsAsync(classId);
