@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreaterGradesBackend.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+feaaeea47778dfb42dc8bc511190fc0f41864ace")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16944589ed404c9fc7dd314de59fee31455b627a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreaterGradesBackend.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreaterGradesBackend.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

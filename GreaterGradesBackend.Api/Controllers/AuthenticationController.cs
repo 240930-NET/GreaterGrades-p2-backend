@@ -46,6 +46,7 @@ namespace GreaterGradesBackend.Api.Controllers
             return Ok(new { Token = token });
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -65,6 +66,7 @@ namespace GreaterGradesBackend.Api.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateUser(int userId, [FromBody] UpdateUserDto updateUserDto)
         {
@@ -73,25 +75,35 @@ namespace GreaterGradesBackend.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Check if the user is editing their own profile or is an InstitutionAdmin or higher
+            var currentUserRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.Name)?.Value);
+
+            if (currentUserId != userId && (currentUserRole != "InstitutionAdmin" && currentUserRole != "Admin"))
+            {
+                return Forbid();
+            }
+
             var result = await _userService.UpdateUserAsync(userId, updateUserDto);
             if (!result)
             {
                 return NotFound();
             }
 
-            return NoContent(); // 204 No Content
+            return NoContent();
         }
 
-        [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteUser(int userId)
+        [Authorize]
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserById(int userId)
         {
-            var result = await _userService.DeleteUserAsync(userId);
-            if (!result)
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return NoContent(); // 204 No Content
+            return Ok(user);
         }
     }
 }

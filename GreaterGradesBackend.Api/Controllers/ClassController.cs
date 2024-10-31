@@ -11,7 +11,6 @@ namespace GreaterGradesBackend.Api.Controllers
     public class ClassesController : ControllerBase
     {
         private readonly IClassService _classService;
-
         public ClassesController(IClassService classService)
         {
             _classService = classService;
