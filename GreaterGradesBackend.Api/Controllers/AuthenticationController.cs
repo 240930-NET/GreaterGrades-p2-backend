@@ -3,6 +3,10 @@ using GreaterGradesBackend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+
+
 
 namespace GreaterGradesBackend.Api.Controllers
 {
@@ -52,18 +56,6 @@ namespace GreaterGradesBackend.Api.Controllers
         {
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
-        }
-
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetUserById(int userId)
-        {
-            var user = await _userService.GetUserByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
         }
 
         [Authorize]
