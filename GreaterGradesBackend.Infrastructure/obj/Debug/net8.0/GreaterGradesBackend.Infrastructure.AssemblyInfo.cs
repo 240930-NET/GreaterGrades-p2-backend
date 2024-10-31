@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreaterGradesBackend.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a1d4da49bfd473280fe2f9399a2443680c430ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3be6b0f0619dbe32136d8291e553bbcb2443f514")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreaterGradesBackend.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreaterGradesBackend.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
