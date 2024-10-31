@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj": {}
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj": {
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj",
         "projectName": "GreaterGradesBackend.Api",
-        "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj",
-        "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\obj\\",
+        "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj",
+        "packagesPath": "C:\\Users\\Rylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Rylan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
               },
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj"
               }
             }
           }
@@ -97,21 +97,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj",
         "projectName": "GreaterGradesBackend.Common",
-        "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj",
-        "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\obj\\",
+        "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj",
+        "packagesPath": "C:\\Users\\Rylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Rylan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -165,21 +165,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj",
         "projectName": "GreaterGradesBackend.Domain",
-        "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj",
-        "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj",
+        "packagesPath": "C:\\Users\\Rylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Rylan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -229,21 +229,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj",
         "projectName": "GreaterGradesBackend.Infrastructure",
-        "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Rylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Rylan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -255,11 +255,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj"
               },
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
               }
             }
           }
@@ -322,21 +322,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj": {
+    "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj",
         "projectName": "GreaterGradesBackend.Tests",
-        "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj",
-        "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Tests\\obj\\",
+        "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Tests\\GreaterGradesBackend.Tests.csproj",
+        "packagesPath": "C:\\Users\\Rylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Rylan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -348,17 +348,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Api\\GreaterGradesBackend.Api.csproj"
               },
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Common\\GreaterGradesBackend.Common.csproj"
               },
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Domain\\GreaterGradesBackend.Domain.csproj"
               },
-              "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\William\\revature\\GreaterGradesBackend\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj"
+              "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Rylan\\Desktop\\training\\GreaterGrades-p2\\GreaterGradesBackend.Infrastructure\\GreaterGradesBackend.Infrastructure.csproj"
               }
             }
           }
@@ -427,7 +427,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

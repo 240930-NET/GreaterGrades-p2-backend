@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreaterGradesBackend.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a7bec644ab9a0bb7e1c8ef4a9881540843a5052")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a1d4da49bfd473280fe2f9399a2443680c430ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreaterGradesBackend.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreaterGradesBackend.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
