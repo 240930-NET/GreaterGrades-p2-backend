@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 
-const StudentHeader = () => {
+const Header = () => {
     const [user, setUser] = useState();
-    const url = 'http://localhost:5000/api/Auth/5';
+    const url = 'http://localhost:5000/api/Auth/1';
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             const data = await response.json();
             setUser(data);
         };
@@ -25,4 +30,4 @@ const StudentHeader = () => {
 
 
 
-export default StudentHeader;
+export default Header;

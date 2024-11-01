@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 
 
 
-const StudentTiles = () => {
-
+const Tiles = () => {
     const [courses, setCourses] = useState([]);
     const url = 'http://localhost:5000/api/Classes'
 
     useEffect(() => {
         const fetchCourses = async () => {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             const data = await response.json();
             setCourses(data);
         };
@@ -23,4 +27,4 @@ const StudentTiles = () => {
     );
 };
 
-export default StudentTiles;
+export default Tiles;
