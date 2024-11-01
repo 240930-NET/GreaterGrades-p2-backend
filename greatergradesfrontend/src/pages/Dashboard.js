@@ -6,12 +6,43 @@ import ProfileContent from "../components/ProfileContent";
 import EnrolledClasses from "../components/EnrolledClasses";
 import TaughtClasses from "../components/TaughtClasses";
 
-const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard'},
-    { id: 'profile', label: 'Profile'},
-    { id: 'enrolled classes', label: 'Enrolled Classes'},
-    { id: 'taught classes', label: 'Taught Classes'}
-]
+const storedUser = localStorage.getItem('currentUser');
+const parsedUser = JSON.parse(storedUser);
+let sidebarItems = [];
+
+if (parsedUser?.role === 0) {
+    sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard'},
+        { id: 'profile', label: 'Profile'},
+        { id: 'enrolled classes', label: 'Enrolled Classes'},
+        { id: 'taught classes', label: 'Taught Classes'}
+    ]
+}
+else if (parsedUser?.role === 1) {
+    sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard'},
+        { id: 'profile', label: 'Profile'},
+        { id: 'enrolled classes', label: 'Enrolled Classes'},
+        { id: 'taught classes', label: 'Taught Classes'}
+    ]
+}
+else if (parsedUser?.role === 2) {
+    sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard'},
+        { id: 'profile', label: 'Profile'},
+        { id: 'enrolled classes', label: 'Enrolled Classes'},
+        { id: 'taught classes', label: 'Taught Classes'}
+    ]
+}
+else if (parsedUser?.role === 3) {
+    sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard'},
+        { id: 'profile', label: 'Profile'},
+        { id: 'enrolled classes', label: 'Enrolled Classes'},
+        { id: 'taught classes', label: 'Taught Classes'}
+    ]
+}
+
 
 const Dashboard = () => {
 

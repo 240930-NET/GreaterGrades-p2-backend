@@ -18,8 +18,15 @@ const DashboardContent = () => {
     else if (parsedUser?.role === 1){
         return (
             <div className="student-content">
-                <div className="student-tiles">
-                    <Tiles />
+                <div>
+                    <h3>Enrolled Classes</h3>
+                    <div className="student-tiles">
+                        <Tiles courseIds={parsedUser?.classIds} />
+                    </div>
+                    <h3>Taught Classes</h3>
+                    <div className="student-tiles">
+                        <Tiles courseIds={parsedUser?.taughtClassIds} />
+                    </div>
                 </div>
             </div>
         )
