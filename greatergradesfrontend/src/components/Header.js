@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 const Header = () => {
     const storedUser = localStorage.getItem('currentUser');
     const parsedUser = JSON.parse(storedUser);
@@ -7,9 +5,9 @@ const Header = () => {
     return (
         <div className="student-header">
             <div className="student-info">
-                <h3>{parsedUser.firstName} {parsedUser.lastName}</h3>
-                <p>{parsedUser.username}</p>
-                <p>{parsedUser.role}</p>
+                <h3>{parsedUser?.firstName} {parsedUser?.lastName}</h3>
+                <p>{parsedUser?.username}</p>
+                <p>{parsedUser?.role}</p>
             </div>
         </div>
     );

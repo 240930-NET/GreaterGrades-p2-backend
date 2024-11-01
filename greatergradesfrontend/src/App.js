@@ -5,7 +5,6 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
 
-
   //// Fetch admin login and set authentication token
   const [token, setToken] = useState();
     useEffect(() => {
@@ -34,16 +33,19 @@ function App() {
     ///// Fetch admin by id (2) and set role
     const [user, setUser] = useState();
     useEffect(() => {
-      const fetchUser = async () => {
-        const response = await fetch('http://localhost:5000/api/Auth/2', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-            'Content-Type': 'application/json'
+        const fetchUser = async () => {
+          try{
+          const response = await fetch('http://localhost:5000/api/Auth/2', {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+              'Content-Type': 'application/json'
+            }
+          })
+          const data = await response.json();
+          setUser(data);
+          } catch{
           }
-        })
-        const data = await response.json();
-        setUser(data);
-      }
+        }
       fetchUser();
     }, []);
 
