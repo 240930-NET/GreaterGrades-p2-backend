@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
 
   //// Fetch admin login and set authentication token
-  const [token, setToken] = useState();
+  const [token, setToken] = useState("");
     useEffect(() => {
         const fetchToken = async () => {
             const response = await fetch('http://localhost:5000/api/Auth/login', {
@@ -31,7 +31,7 @@ function App() {
     }, [token]);
 
     ///// Fetch admin by id (2) and set role
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
     useEffect(() => {
         const fetchUser = async () => {
           try{
