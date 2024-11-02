@@ -100,9 +100,9 @@ namespace GreaterGradesBackend.Api.Controllers
 
         [Authorize]
         [HttpGet("username/{username}")]
-        public async Task<IActionResult> GetUserByUsername(int username)
+        public async Task<IActionResult> GetUserByUsername(string username)
         {
-            var user = await _userService.GetUserByUsernameAsync(username);
+            var user = await _userService.GetUserFromUsernameAsync(username);
             if (user == null)
             {
                 return NotFound();

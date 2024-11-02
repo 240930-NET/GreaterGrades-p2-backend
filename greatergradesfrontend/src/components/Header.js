@@ -4,8 +4,8 @@ const Header = () => {
     const parsedUser = JSON.parse(storedUser);
 
     return (
-        <div className="student-header">
-            <div className="student-info">
+        <div className="dashboard-header">
+            <div className="dashboard-info">
                 <h3>{parsedUser?.firstName} {parsedUser?.lastName}</h3>
                 <p>{parsedUser?.username}</p>
                 <p>{RoleEnum[parsedUser?.role]}</p>
