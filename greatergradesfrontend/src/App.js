@@ -2,7 +2,7 @@ import './App.css';
 import './styles/student.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Dashboard from './pages/Dashboard';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
 
@@ -54,10 +54,7 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
-        <Route path="/" element={user ? <Dashboard /> : <div>loading...</div>} />
-      </Routes>
+      <AppRoutes />
     </Router>
   )
 }
