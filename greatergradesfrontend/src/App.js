@@ -121,6 +121,7 @@ export default App;
 
 import './App.css';
 import './styles/student.css';
+import './styles/header.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AppRoutes from './routes/AppRoutes';

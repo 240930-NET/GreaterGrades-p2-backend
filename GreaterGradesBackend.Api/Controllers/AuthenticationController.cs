@@ -86,10 +86,23 @@ namespace GreaterGradesBackend.Api.Controllers
         }
 
         [Authorize]
-        [HttpGet("{userId}")]
+        [HttpGet("id/{userId}")]
         public async Task<IActionResult> GetUserById(int userId)
         {
             var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [Authorize]
+        [HttpGet("username/{username}")]
+        public async Task<IActionResult> GetUserByUsername(int username)
+        {
+            var user = await _userService.GetUserByUsernameAsync(username);
             if (user == null)
             {
                 return NotFound();
