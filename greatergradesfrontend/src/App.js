@@ -6,64 +6,57 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
 
-  //// Fetch admin login and set authentication token
-  const [token, setToken] = useState("");
-    useEffect(() => {
-        const fetchToken = async () => {
-            const response = await fetch('http://localhost:5000/api/Auth/login', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    username: "admin",
-                    password: "admin"
-                })
+  const [token, setToken] = useState(localStorage.getItem('authToken') || "");
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('currentUser')) || null);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+      const fetchTokenAndUser = async () => {
+        try {
+          if (!token){
+            const tokenResponse = await fetch('http://localhost:5000/api/Auth/login', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                  username: "admin",
+                  password: "admin"
+              })
             });
-            const data = await response.json();
-            setToken(data);
-        }
-        fetchToken();
-    }, []);
-    
+            const tokenData = await tokenResponse.json();
+            setToken(tokenData);
+            localStorage.setItem('authToken', tokenData?.token)
+          }
 
-    useEffect(() => {
-      if (token) {
-        localStorage.setItem('authToken', token?.token);
-      }
-    }, [token]);
-
-    ///// Fetch admin by id (2) and set role
-    const [user, setUser] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-          try{
-          const response = await fetch('http://localhost:5000/api/Auth/2', {
+          const userResponse = await fetch('http://localhost:5000/api/Auth/2', {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
               'Content-Type': 'application/json'
             }
-          })
-          const data = await response.json();
-          setUser(data);
-          } catch{
-          }
+          });
+          const userData = await userResponse.json();
+          setUser(userData);
+          localStorage.setItem('currentUser', JSON.stringify(userData));
+          
+        } catch {
+
+        } finally {
+          setLoading(false);
         }
-      fetchUser();
-    }, []);
+      };
+      fetchTokenAndUser();
+  }, [token]);
 
-    useEffect(() => {
-      if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      }
-    }, [user]);
-
-
-
+  if (loading) {
+    return <div>loading....</div>
+  }
+    
 
   return (
     <Router>
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={user ? <Dashboard /> : <div>loading...</div>} />
       </Routes>
     </Router>
   )
