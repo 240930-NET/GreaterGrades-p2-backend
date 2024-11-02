@@ -6,17 +6,19 @@ const Tiles = ({ courseIds }) => {
 
     useEffect(() => {
         const fetchCourses = async () => {
-            const responses = await Promise.all(
-                courseIds.map(courseId => 
-                    fetch('http://localhost:5000/api/Classes/' + courseId, {
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                            'Content-Type': 'application/json'
-                        }
-                    }).then(res => res.json())
+            try {
+                const responses = await Promise.all(
+                    courseIds.map(courseId => 
+                        fetch('http://localhost:5000/api/Classes/' + courseId, {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(res => res.json())
+                    )
                 )
-            )
-            setCourses(responses);
+                setCourses(responses);
+            } catch {}
         }
         if (courseIds.length > 0) fetchCourses();
 
