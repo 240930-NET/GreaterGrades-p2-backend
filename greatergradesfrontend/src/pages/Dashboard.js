@@ -14,8 +14,7 @@ if (parsedUser?.role === 0) {
     sidebarItems = [
         { id: 'dashboard', label: 'Dashboard'},
         { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes'},
-        { id: 'taught classes', label: 'Taught Classes'}
+        { id: 'enrolled classes', label: 'Enrolled Classes'}
     ]
 }
 else if (parsedUser?.role === 1) {
