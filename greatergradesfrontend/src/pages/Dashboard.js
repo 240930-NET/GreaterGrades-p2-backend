@@ -9,6 +9,7 @@ import TaughtClasses from "../components/TaughtClasses";
 const storedUser = localStorage.getItem('currentUser');
 const parsedUser = JSON.parse(storedUser);
 let sidebarItems = [];
+let assignmentNames = ['test', 'test1', 'test2']
 
 if (parsedUser?.role === 0) {
     sidebarItems = [
@@ -37,7 +38,7 @@ else if (parsedUser?.role === 3) {
     sidebarItems = [
         { id: 'dashboard', label: 'Dashboard'},
         { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes'},
+        { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: assignmentNames},
         { id: 'taught classes', label: 'Taught Classes'}
     ]
 }
@@ -54,9 +55,9 @@ const Dashboard = () => {
             case 'profile':
                 return <ProfileContent />;
             case 'enrolled classes':
-                return <EnrolledClasses />
+                return <EnrolledClasses />;
             case 'taught classes':
-                return <TaughtClasses />
+                return <TaughtClasses />;
             default:
                 return <div>doesnt match....</div>
         }
@@ -66,7 +67,7 @@ const Dashboard = () => {
 
     return (
         <main className='student-dashboard'>
-            <SideBar items={sidebarItems} selectedItem={selectedItem} onSelectItem={setSelectedItem}/>
+            <SideBar items={sidebarItems} selectedItem={selectedItem} onSelectItem={setSelectedItem} />
             <div className='student-body'>
                 <Header />
                 {renderContent()}

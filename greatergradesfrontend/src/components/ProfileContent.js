@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
 import { RoleEnum } from "../enum/Role";
+import { useGetInstitutionById } from "../greatergradesapi/Institutions";
 const ProfileContent = () => {
     
     const storedUser = localStorage.getItem('currentUser');
     const parsedUser = JSON.parse(storedUser);
-    const [institutionName, setInstitutionName] = useState({})
 
-    useEffect(() => {
-        const fetchInstitution = async () => {
-            const response = await fetch('http://localhost:5000/api/Institutions/' + parsedUser?.institutionId, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            const data = await response.json();
-            setInstitutionName(data);
-        }
-        fetchInstitution();
-    }, [parsedUser?.institutionId])
+    const institution = useGetInstitutionById(parsedUser?.institutionId)
 
     return (
         <div className="student-content">
@@ -26,7 +13,7 @@ const ProfileContent = () => {
             <p>Last Name: {parsedUser?.lastName}</p>
             <p>Username: {parsedUser?.username}</p>
             <p>Role: {RoleEnum[parsedUser?.role]}</p>
-            <p>Institution: {institutionName?.name}</p>
+            <p>Institution: {institution?.name}</p>
         </div>
     )
 }
