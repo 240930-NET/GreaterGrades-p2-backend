@@ -108,7 +108,7 @@ export const useGetUserById = (id) => {
         const token = localStorage.getItem('authToken');
         const fetchUserById = async () => {
             try{
-                const response = await fetch(`${url}${id}`, getCommonHeader(token))
+                const response = await fetch(`${url}id/${id}`, getCommonHeader(token))
                 const data = await response.json();
                 setUser(data || {});
                 localStorage.setItem('currentUser', JSON.stringify(data || {}));
@@ -129,7 +129,7 @@ export const useGetUserByUsername = (username) => {
         const token = localStorage.getItem('authToken');
         const fetchUserByUsername = async () => {
             try{
-                const response = await fetch(`${url}${username}`, getCommonHeader(token))
+                const response = await fetch(`${url}username/${username}`, getCommonHeader(token))
                 const data = await response.json();
                 setUser(data || {});
                 localStorage.setItem('currentUser', JSON.stringify(data || {}));
