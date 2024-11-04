@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import { checkExpired, getStorageItem, setStorageItem } from "./LocalStorage";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(getStorageItem('currentUser'));
     const [authToken, setAuthToken] = useState(getStorageItem('authToken'));
+    const navigate = useNavigate();
 
     const login = (token, user) => {
         setAuthToken(token);
@@ -19,13 +21,30 @@ export const UserProvider = ({children}) => {
         setCurrentUser(null);
         localStorage.removeItem('authToken');
         localStorage.removeItem('currentUser');
+        navigate('/');
+    };
+
+    const checkToken = () => {
+        if (getStorageItem('authToken') === null) {
+            
+        } else if(checkExpired('authToken')) {
+            logout();
+        }
     };
 
     useEffect(() => {
-        if (checkExpired('authToken')) {
-            logout();
+        const userActivity = () => {
+            checkToken();
         }
-    }, [authToken]);
+
+        window.addEventListener('click', userActivity);
+
+        return () => {
+            window.removeEventListener('click', userActivity);
+        }
+    }, [authToken])
+
+    
 
     return (
         <UserContext.Provider value={{ currentUser, authToken, login, logout }}>

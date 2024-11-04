@@ -4,12 +4,10 @@ import { UserContext } from '../functions/UserContext';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, logout } = useContext(UserContext);
 
     const handleLogout = () => {
-        console.log("LOGOUT TEST")
-        //localStorage.removeItem('currentUser');
-        //window.location.reload();
+        logout();
     };
 
     return (

@@ -10,14 +10,10 @@ const AppRoutes = () => {
 
     return (
         <Routes>
-            {!authToken ? (
-                <Route path='/' element={<Navigate to='/login' replace />} />
-            ) : (
-                <Route path='/dashboard' element={<Dashboard />} />
-            )}
+            <Route path='/' element={!authToken ? <Navigate to='/login' /> : <Navigate to ='/dashboard' />} />
             <Route path='/login' element={<TempLogin />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/course' element={<Course />} />
+            <Route path='/dashboard' element={!authToken ? <Navigate to='/login' /> : <Dashboard />} />
+            <Route path='/course' element={!authToken ? <Navigate to='/login' /> : <Course />} />
         </Routes >
     )
 }
