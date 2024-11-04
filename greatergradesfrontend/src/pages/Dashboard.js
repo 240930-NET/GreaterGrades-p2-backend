@@ -28,8 +28,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         const newSidebarItems = [];
-        console.log("in sidebar state")
-        console.log(currentUser?.role)
         if (currentUser?.role === 0) {
             newSidebarItems.push(
                 { id: 'dashboard', label: 'Dashboard'},
@@ -78,10 +76,6 @@ const Dashboard = () => {
                 return <div>doesnt match....</div>
         }
     }
-
-    console.log(sidebarItems)
-
-
 
     return (
         <main className='student-dashboard'>
