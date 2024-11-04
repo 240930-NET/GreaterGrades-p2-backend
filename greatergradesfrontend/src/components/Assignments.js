@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useGetUsersClasses } from "../greatergradesapi/Classes";
-import { getStorageItem } from "../functions/LocalStorage";
+import { useContext } from "react";
+import { UserContext } from "../functions/UserContext";
 
 
 const Assignments = ({ courseIds }) => {
