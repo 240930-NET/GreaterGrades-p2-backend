@@ -6,10 +6,10 @@ const TaughtClasses = () => {
 
 
     return (
-        <div className="student-content">
+        <div className="dashboard-content">
             <div>
                 <h3>Taught Classes</h3>
-                <div className="student-tiles">
+                <div className="dashboard-tiles">
                     <Tiles courseIds={currentUser?.taughtClassIds} />
                 </div>
             </div>
