@@ -17,6 +17,8 @@ const Assignments = ({ courseIds }) => {
         return assignments.flatMap(assignment => assignment.grades.userId === currentUser?.userId ? [assignment.grades] : [])
     }, [assignments, currentUser])
 
+    console.log(grades)
+
     return (
         <div>
             {assignments.map((assignment, index) => (

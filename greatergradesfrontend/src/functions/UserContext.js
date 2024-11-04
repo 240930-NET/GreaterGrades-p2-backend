@@ -42,7 +42,7 @@ export const UserProvider = ({children}) => {
         return () => {
             window.removeEventListener('click', userActivity);
         }
-    }, [authToken])
+    })
 
     
 
