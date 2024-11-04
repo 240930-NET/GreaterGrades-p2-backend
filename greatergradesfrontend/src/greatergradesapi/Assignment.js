@@ -14,7 +14,7 @@ export const useGetAllAssignments = () => {
   
   useEffect(() => {
     const token = getStorageItem('authToken')
-    const fetchToken = async () => {
+    const fetchAssignment = async () => {
       try {
         const response = await fetch(`${url}`, getCommonHeader(token))
         const data = response.json();
@@ -23,7 +23,7 @@ export const useGetAllAssignments = () => {
         console.error("Error fetching assignments")
       }
     }
-    if (token) fetchUsers();
+    if (token) fetchAssignment();
   }, [])
   return assignments;
 }

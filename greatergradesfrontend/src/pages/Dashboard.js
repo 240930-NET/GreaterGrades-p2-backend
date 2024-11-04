@@ -14,12 +14,9 @@ const Dashboard = () => {
     const [selectedItem, setSelectedItem] = useState('dashboard');
     const [sidebarItems, setSidebarItems] = useState([]);
     const courses = useGetUsersClasses(currentUser?.classIds)
-    const assignments = useMemo(() => {
-        return courses.flatMap(course => course.assignments || []);
+    const courseNames = useMemo(() => {
+        return courses.flatMap(course => course.subject || '');
     }, [courses])
-    const assignmentNames = useMemo(() => {
-        return assignments.flatMap(assignment => assignment.name || "");
-    }, [assignments])
 
     useEffect(() => {
         const storedUser = getStorageItem('currentUser');
@@ -55,12 +52,12 @@ const Dashboard = () => {
             newSidebarItems.push(
                 { id: 'dashboard', label: 'Dashboard'},
                 { id: 'profile', label: 'Profile'},
-                { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: assignmentNames},
+                { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: courseNames},
                 { id: 'taught classes', label: 'Taught Classes'}
             )
         }
         setSidebarItems(newSidebarItems);
-    }, [currentUser, assignmentNames])
+    }, [currentUser, courseNames])
 
     const renderContent = () => {
         switch (selectedItem) {
