@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getStorageItem } from "../functions/functions";
 
 const url = 'http://localhost:5000/api/Grades/'
 const getCommonHeader = (token) => ({
@@ -12,7 +13,7 @@ export const useGetGrades = () => {
     const [grades, setGrades] = useState([])
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchGrades = async () => {
             try {
                 const response = await fetch(`${url}`, getCommonHeader(token));
@@ -32,7 +33,7 @@ export const useGetGrade = (id) => {
     const [grade, setGrade] = useState({})
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchGrade = async () => {
             try {
                 const response = await fetch(`${url}${id}`, getCommonHeader(token));
@@ -50,7 +51,7 @@ export const useGetGrade = (id) => {
 
 export const useUpdateGrade = (id, score, gradingStatus) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchUpdateGrade = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {

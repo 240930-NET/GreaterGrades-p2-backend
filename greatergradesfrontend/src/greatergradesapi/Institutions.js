@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getStorageItem } from "../functions/functions";
 
 const url = 'http://localhost:5000/api/Institutions/'
 const getCommonHeader = (token) => ({
@@ -13,7 +14,7 @@ export const useGetAllInstitutions = () => {
     const [institutions, setInstitutions] = useState([])
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken')
+        const token = getStorageItem('authToken')
         const fetchInstitutions = async () => {
             try {
                 const response = await fetch(`${url}`, getCommonHeader(token));
@@ -33,7 +34,7 @@ export const useAddInstitution = (name) => {
     const [institution, setInstitution] = useState({})
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken')
+        const token = getStorageItem('authToken')
         const fetchAddInstitution = async () => {
             try {
                 const response = await fetch(`${url}`, {
@@ -59,7 +60,7 @@ export const useAddInstitution = (name) => {
 export const useGetInstitutionById = (id) => {
     const [institution, setInstitution] = useState({})
     useEffect(() => {
-        const token = localStorage.getItem('authToken')
+        const token = getStorageItem('authToken')
         const fetchInstitution = async () => {
             try {
                 const response = await fetch(`${url}${id}`, getCommonHeader(token));
@@ -77,7 +78,7 @@ export const useGetInstitutionById = (id) => {
 
 export const useUpdateInstitution = (id, name) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken')
+        const token = getStorageItem('authToken')
         const fetchUpdateInstitution = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
@@ -100,7 +101,7 @@ export const useUpdateInstitution = (id, name) => {
 
 export const useDeleteInstitution = (id) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken')
+        const token = getStorageItem('authToken')
         const fetchDeleteInstitution = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {

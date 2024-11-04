@@ -1,11 +1,11 @@
 import Assignments from "../components/Assignments";
+import { getStorageItem } from "../functions/functions";
 
-const storedUser = localStorage.getItem('currentUser');
-const parsedUser = JSON.parse(storedUser);
+const currentUser = getStorageItem('currentUser')
 const Course = () => {
     return (
         <main>
-            <Assignments courseIds={parsedUser?.classIds} />
+            <Assignments courseIds={currentUser?.classIds} />
         </main>
     )
 }

@@ -1,52 +1,68 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import DashboardContent from "../components/DashboardContent";
 import ProfileContent from "../components/ProfileContent";
 import EnrolledClasses from "../components/EnrolledClasses";
 import TaughtClasses from "../components/TaughtClasses";
-
-const storedUser = localStorage.getItem('currentUser');
-const parsedUser = JSON.parse(storedUser);
-let sidebarItems = [];
-let assignmentNames = ['test', 'test1', 'test2']
-
-if (parsedUser?.role === 0) {
-    sidebarItems = [
-        { id: 'dashboard', label: 'Dashboard'},
-        { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes'}
-    ]
-}
-else if (parsedUser?.role === 1) {
-    sidebarItems = [
-        { id: 'dashboard', label: 'Dashboard'},
-        { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes'},
-        { id: 'taught classes', label: 'Taught Classes'}
-    ]
-}
-else if (parsedUser?.role === 2) {
-    sidebarItems = [
-        { id: 'dashboard', label: 'Dashboard'},
-        { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes'},
-        { id: 'taught classes', label: 'Taught Classes'}
-    ]
-}
-else if (parsedUser?.role === 3) {
-    sidebarItems = [
-        { id: 'dashboard', label: 'Dashboard'},
-        { id: 'profile', label: 'Profile'},
-        { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: assignmentNames},
-        { id: 'taught classes', label: 'Taught Classes'}
-    ]
-}
-
+import { getStorageItem } from "../functions/functions";
+import { useGetUsersClasses } from "../greatergradesapi/Classes";
 
 const Dashboard = () => {
 
+    const [currentUser, setCurrentUser] = useState(getStorageItem('currentUser'));
     const [selectedItem, setSelectedItem] = useState('dashboard');
+    const [sidebarItems, setSidebarItems] = useState([]);
+    const courses = useGetUsersClasses(currentUser?.classIds)
+    const assignments = useMemo(() => {
+        return courses.flatMap(course => course.assignments || []);
+    }, [courses])
+    const assignmentNames = useMemo(() => {
+        return assignments.flatMap(assignment => assignment.name || "");
+    }, [assignments])
+
+    useEffect(() => {
+        const storedUser = getStorageItem('currentUser');
+        setCurrentUser(storedUser);
+    }, [])
+
+    useEffect(() => {
+        const newSidebarItems = [];
+        console.log("in sidebar state")
+        console.log(currentUser?.role)
+        if (currentUser?.role === 0) {
+            newSidebarItems.push(
+                { id: 'dashboard', label: 'Dashboard'},
+                { id: 'profile', label: 'Profile'},
+                { id: 'enrolled classes', label: 'Enrolled Classes'}
+            )
+        }
+        else if (currentUser?.role === 1) {
+            newSidebarItems.push(
+                { id: 'dashboard', label: 'Dashboard'},
+                { id: 'profile', label: 'Profile'},
+                { id: 'enrolled classes', label: 'Enrolled Classes'},
+                { id: 'taught classes', label: 'Taught Classes'}
+            )
+        }
+        else if (currentUser?.role === 2) {
+            newSidebarItems.push(
+                { id: 'dashboard', label: 'Dashboard'},
+                { id: 'profile', label: 'Profile'},
+                { id: 'enrolled classes', label: 'Enrolled Classes'},
+                { id: 'taught classes', label: 'Taught Classes'}
+            )
+        }
+        else if (currentUser?.role === 3) {
+            newSidebarItems.push(
+                { id: 'dashboard', label: 'Dashboard'},
+                { id: 'profile', label: 'Profile'},
+                { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: assignmentNames},
+                { id: 'taught classes', label: 'Taught Classes'}
+            )
+        }
+        setSidebarItems(newSidebarItems);
+    }, [currentUser, assignmentNames])
 
     const renderContent = () => {
         switch (selectedItem) {
@@ -62,6 +78,8 @@ const Dashboard = () => {
                 return <div>doesnt match....</div>
         }
     }
+
+    console.log(sidebarItems)
 
 
 
