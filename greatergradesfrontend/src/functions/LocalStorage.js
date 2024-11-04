@@ -13,7 +13,9 @@ export function setStorageItem(key, value) {
 export function checkExpired(key) {
     const token = localStorage.getItem(key);
     console.log("Checking token:", key, token); // Debugging log
-    if (!token) return true;
+    if (!token) {
+        return true;
+    }
 
     try {
         const decodedToken = jwtDecode(token);

@@ -1,8 +1,9 @@
-import { getStorageItem } from "../functions/functions";
+import { useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 import Tiles from "./Tiles";
 const EnrolledClasses = () => {
 
-    const currentUser = getStorageItem('currentUser')
+    const { currentUser } = useContext(UserContext);
     console.log(currentUser)
 
 

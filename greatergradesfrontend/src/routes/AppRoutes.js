@@ -1,12 +1,21 @@
 import Dashboard from "../pages/Dashboard";
-import Course from "../pages/Course";
-import { Route, Routes } from 'react-router-dom';
+import TempLogin from "../pages/TempLogin";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useContext } from "react";
+import { UserContext } from "../functions/UserContext";
 
 const AppRoutes = () => {
+    const { authToken } = useContext(UserContext);
+
     return (
         <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/Course' element={<Course />} />
+            {!authToken ? (
+                <Route path='/' element={<Navigate to='/login' replace />} />
+            ) : (
+                <Route path='/dashboard' element={<Dashboard />} />
+            )}
+            <Route path='/login' element={<TempLogin />} />
+            <Route path='/dashboard' element={<Dashboard />} />
         </Routes >
     )
 }

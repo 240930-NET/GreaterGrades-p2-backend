@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getStorageItem } from "../functions/functions";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 
 const url = 'http://localhost:5000/api/Institutions/'
 const getCommonHeader = (token) => ({
@@ -12,35 +12,35 @@ const getCommonHeader = (token) => ({
 
 export const useGetAllInstitutions = () => {
     const [institutions, setInstitutions] = useState([])
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken')
         const fetchInstitutions = async () => {
             try {
-                const response = await fetch(`${url}`, getCommonHeader(token));
+                const response = await fetch(`${url}`, getCommonHeader(authToken));
                 const data = await response.json();
                 setInstitutions(data || []);
             } catch {
                 console.error("Error fetching institutions")
             }
         }
-        if (token) fetchInstitutions();
-    }, [])
+        if (authToken) fetchInstitutions();
+    }, [authToken])
     return institutions;
 }
 
 
 export const useAddInstitution = (name) => {
     const [institution, setInstitution] = useState({})
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken')
         const fetchAddInstitution = async () => {
             try {
                 const response = await fetch(`${url}`, {
                     method: 'POSt',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ name })
@@ -51,40 +51,42 @@ export const useAddInstitution = (name) => {
                 console.error('Error adding institution')
             }
         }
-        if (token && name) fetchAddInstitution();
-    }, [name]);
+        if (authToken && name) fetchAddInstitution();
+    }, [authToken, name]);
     return institution;
 }
 
 
 export const useGetInstitutionById = (id) => {
     const [institution, setInstitution] = useState({})
+    const { authToken } = useContext(UserContext);
+
     useEffect(() => {
-        const token = getStorageItem('authToken')
         const fetchInstitution = async () => {
             try {
-                const response = await fetch(`${url}${id}`, getCommonHeader(token));
+                const response = await fetch(`${url}${id}`, getCommonHeader(authToken));
                 const data = await response.json();
                 setInstitution(data || {});
             } catch {
                 console.error("Error fetching institution")
             }
         }
-        if (token && id) fetchInstitution();
-    }, [id])
+        if (authToken && id) fetchInstitution();
+    }, [authToken, id])
     return institution;
 }
 
 
 export const useUpdateInstitution = (id, name) => {
+    const { authToken } = useContext(UserContext);
+
     useEffect(() => {
-        const token = getStorageItem('authToken')
         const fetchUpdateInstitution = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ name })
@@ -94,20 +96,21 @@ export const useUpdateInstitution = (id, name) => {
                 console.error("Error updating institution")
             }
         }
-        if (token && id && name) fetchUpdateInstitution();
-    }, [id, name])
+        if (authToken && id && name) fetchUpdateInstitution();
+    }, [authToken, id, name])
 }
 
 
 export const useDeleteInstitution = (id) => {
+    const { authToken } = useContext(UserContext);
+
     useEffect(() => {
-        const token = getStorageItem('authToken')
         const fetchDeleteInstitution = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
                     method: 'DELETE',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -116,6 +119,6 @@ export const useDeleteInstitution = (id) => {
                 console.error("Error deleting institution")
             }
         }
-        if (token && id) fetchDeleteInstitution();
-    }, [id])
+        if (authToken && id) fetchDeleteInstitution();
+    }, [authToken, id])
 }

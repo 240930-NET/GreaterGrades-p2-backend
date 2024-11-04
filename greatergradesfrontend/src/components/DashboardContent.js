@@ -1,9 +1,10 @@
-import { getStorageItem } from "../functions/functions";
+import { useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 import Tiles from "./Tiles";
 
 
 const DashboardContent = () => {
-    const currentUser = getStorageItem('currentUser');
+    const { currentUser } = useContext(UserContext);
 
     // if user is student display this
     if (currentUser?.role === 0){

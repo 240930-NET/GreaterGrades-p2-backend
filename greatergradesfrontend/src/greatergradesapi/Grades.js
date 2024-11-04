@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getStorageItem } from "../functions/functions";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 
 const url = 'http://localhost:5000/api/Grades/'
 const getCommonHeader = (token) => ({
@@ -11,53 +11,54 @@ const getCommonHeader = (token) => ({
 
 export const useGetGrades = () => {
     const [grades, setGrades] = useState([])
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchGrades = async () => {
             try {
-                const response = await fetch(`${url}`, getCommonHeader(token));
+                const response = await fetch(`${url}`, getCommonHeader(authToken));
                 const data = await response.json();
                 setGrades(data || [])
             } catch {
                 console.error('Error fetching grades');
             }
         }
-        if (token) fetchGrades();
-    }, [])
+        if (authToken) fetchGrades();
+    }, [authToken])
     return grades;
 }
 
 
 export const useGetGrade = (id) => {
     const [grade, setGrade] = useState({})
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchGrade = async () => {
             try {
-                const response = await fetch(`${url}${id}`, getCommonHeader(token));
+                const response = await fetch(`${url}${id}`, getCommonHeader(authToken));
                 const data = await response.json();
                 setGrade(data || {})
             } catch {
                 console.error('Error fetching grade');
             }
         }
-        if (token && id) fetchGrade();
-    }, [id])
+        if (authToken && id) fetchGrade();
+    }, [authToken, id])
     return grade;
 }
 
 
 export const useUpdateGrade = (id, score, gradingStatus) => {
+    const { authToken } = useContext(UserContext);
+
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchUpdateGrade = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ score, gradingStatus })
@@ -67,6 +68,6 @@ export const useUpdateGrade = (id, score, gradingStatus) => {
                 console.error('Failed to update user');
             }
         }
-        if (token && id && score && gradingStatus) fetchUpdateGrade();
-    }, [id, score, gradingStatus])
+        if (authToken && id && score && gradingStatus) fetchUpdateGrade();
+    }, [authToken, id, score, gradingStatus])
 }

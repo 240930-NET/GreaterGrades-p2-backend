@@ -1,11 +1,12 @@
 import { RoleEnum } from "../enum/Role";
-import { getStorageItem } from "../functions/functions";
+import { useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 import { useGetInstitutionById } from "../greatergradesapi/Institutions";
 import { FaUser, FaUserCircle, FaBuilding, FaIdBadge } from 'react-icons/fa';
 
 const ProfileContent = () => {
     
-    const currentUser = getStorageItem('currentUser');
+    const { currentUser } = useContext(UserContext);
     const institution = useGetInstitutionById(currentUser?.institutionId);
 
     return (

@@ -4,6 +4,7 @@ import forestImage from "../images/forest.jfif";
 
 const Tiles = ({ courseIds }) => {
     const classes = useGetUsersClasses(courseIds);
+    console.log(classes)
 
     return (
         <div className="tiles-container">

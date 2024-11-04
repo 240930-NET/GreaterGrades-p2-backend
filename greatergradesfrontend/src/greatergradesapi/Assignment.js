@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getStorageItem } from "../functions/functions";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 
 const url = 'http://localhost:5000/api/Assignments/'
 const getCommonHeader = (token) => ({
@@ -11,35 +11,35 @@ const getCommonHeader = (token) => ({
 
 export const useGetAllAssignments = () => {
   const [assignments, setAssignments] = useState([])
+  const { authToken } = useContext(UserContext);
   
   useEffect(() => {
-    const token = getStorageItem('authToken')
     const fetchAssignment = async () => {
       try {
-        const response = await fetch(`${url}`, getCommonHeader(token))
+        const response = await fetch(`${url}`, getCommonHeader(authToken))
         const data = response.json();
         setAssignments(data || [])
       } catch {
         console.error("Error fetching assignments")
       }
     }
-    if (token) fetchAssignment();
-  }, [])
+    if (authToken) fetchAssignment();
+  }, [authToken])
   return assignments;
 }
 
 
 export const useAddAssignment = (name, classId) => {
   const [assignment, setAssignment] = useState({})
+  const { authToken } = useContext(UserContext);
 
   useEffect(() => {
-    const token = getStorageItem('authToken');
     const fetchAddAssignment = async () => {
       try {
         const response = await fetch(`${url}`, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${authToken}`,
             'Content-Type': 'application/json'
             },
           body: JSON.stringify({ name, classId })
@@ -50,41 +50,42 @@ export const useAddAssignment = (name, classId) => {
         console.error("Error adding assignment")
       }
     }
-    if (token, name, classId) fetchAddAssignment();
-  }, [name, classId])
+    if (authToken, name, classId) fetchAddAssignment();
+  }, [authToken, name, classId])
   return assignment;
 }
 
 
 export const useGetAssingmentById = (id) => {
   const [assignment, setAssignment] = useState({})
+  const { authToken } = useContext(UserContext);
 
   useEffect(() => {
-    const token = getStorageItem('authToken');
     const fetchAssignment = async () => {
       try {
-        const response = await fetch(`${url}${id}`, getCommonHeader(token))
+        const response = await fetch(`${url}${id}`, getCommonHeader(authToken))
         const data = await response.json();
         setAssignment(data || {})
       } catch {
         console.error("Error fetching assignment")
       }
     }
-    if (token && id) fetchAssignment();
-  }, [id])
+    if (authToken && id) fetchAssignment();
+  }, [authToken, id])
   return assignment;
 }
 
 
 export const useUpdateAssignment = (id, name, classId) => {
+  const { authToken } = useContext(UserContext);
+
   useEffect(() => {
-    const token = getStorageItem('authToken');
     const fetchUpdateAssignment = async () => {
       try {
         const response = await fetch(`${url}${id}`, {
           method: 'PUT',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${authToken}`,
             'Content-Type': 'application/json'
             },
           body: JSON.stringify({ name, classId })
@@ -94,19 +95,19 @@ export const useUpdateAssignment = (id, name, classId) => {
         console.error("Error updating assignment")
       }
     }
-    if (token && id && name && classId) fetchUpdateAssignment();
-  }, [id, name, classId])
+    if (authToken && id && name && classId) fetchUpdateAssignment();
+  }, [authToken, id, name, classId])
 }
 
 export const useDeleteAssignment = (id) => {
+  const { authToken } = useContext(UserContext);
   useEffect(() => {
-    const token = getStorageItem('authToken');
     const fetchDeleteAssignment = async () => {
       try {
         const response = await fetch(`${url}${id}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${authToken}`,
             'Content-Type': 'application/json'
           }
         })
@@ -115,8 +116,8 @@ export const useDeleteAssignment = (id) => {
         console.error("Error deleting assignment")
       }
     }
-    if (token && id) fetchDeleteAssignment();
-  }, [id])
+    if (authToken && id) fetchDeleteAssignment();
+  }, [authToken, id])
 }
 
 

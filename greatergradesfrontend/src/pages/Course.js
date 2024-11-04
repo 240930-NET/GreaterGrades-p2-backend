@@ -1,7 +1,6 @@
 import Assignments from "../components/Assignments";
-import { getStorageItem } from "../functions/functions";
 
-const currentUser = getStorageItem('currentUser')
+const { currentUser } = useContext(UserContext);
 const Course = () => {
     return (
         <main>

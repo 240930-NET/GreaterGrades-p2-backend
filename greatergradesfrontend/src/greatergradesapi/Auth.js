@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getStorageItem } from "../functions/functions";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../functions/UserContext';
 
 const url = 'http://localhost:5000/api/Auth/';
 const getCommonHeader = (token) => ({
@@ -12,9 +12,9 @@ const getCommonHeader = (token) => ({
 
 export const useRegister = (username, password, firstName, lastName, role, institutionId) =>{
     const [user, setUser] = useState({})
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchRegister = async () => {
             try{
                 const response = await fetch(`${url}register`, {
@@ -29,8 +29,8 @@ export const useRegister = (username, password, firstName, lastName, role, insti
                 console.error("Failed to register user")
             }
         }
-        if (token && username && password && firstName && lastName && role && institutionId) fetchRegister();
-    }, [username, password, firstName, lastName, role, institutionId])
+        if (authToken && username && password && firstName && lastName && role && institutionId) fetchRegister();
+    }, [authToken, username, password, firstName, lastName, role, institutionId])
     return user;
 }
 
@@ -60,33 +60,33 @@ export const useLogin = (username, password) => {
 
 export const useGetAllUsers = () => {
     const [users, setUsers] = useState([]);
+    const { authToken } = useContext(UserContext);
     
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchUsers = async () => {
             try{
-                const response = await fetch(`${url}`, getCommonHeader(token))
+                const response = await fetch(`${url}`, getCommonHeader(authToken))
                 const data = await response.json();
                 setUsers(data || [])
             } catch{
                 console.error("Error fetching users");
             }
         }
-        if (token) fetchUsers();
-    }, [])
+        if (authToken) fetchUsers();
+    }, [authToken])
     return (users)
 }
 
 
 export const useUpdateUser = (id, firstName, lastName) => {
+    const { authToken } = useContext(UserContext);
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchUpdateUser = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ firstName, lastName })
@@ -96,46 +96,76 @@ export const useUpdateUser = (id, firstName, lastName) => {
                 console.error('Error updating user')
             }
         }
-        if (token && firstName && lastName) fetchUpdateUser();
-    }, [id, firstName, lastName])
+        if (authToken && firstName && lastName) fetchUpdateUser();
+    }, [authToken, id, firstName, lastName])
 }
 
 
 export const useGetUserById = (id) => {
     const [user, setUser] = useState({});
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchUserById = async () => {
             try{
-                const response = await fetch(`${url}id/${id}`, getCommonHeader(token))
+                const response = await fetch(`${url}id/${id}`, getCommonHeader(authToken))
                 const data = await response.json();
                 setUser(data || {});
             } catch (error){
                 console.error("Error fetching user: " + error.message);
             }
         }
-        if (token && id) fetchUserById();
-    }, [id]);
+        if (authToken && id) fetchUserById();
+    }, [authToken, id]);
     return (user);
 }
 
 
 export const useGetUserByUsername = (username) => {
     const [user, setUser] = useState({});
+    const { authToken } = useContext(UserContext);
 
     useEffect(() => {
-        const token = getStorageItem('authToken');
         const fetchUserByUsername = async () => {
             try{
-                const response = await fetch(`${url}username/${username}`, getCommonHeader(token))
+                const response = await fetch(`${url}username/${username}`, getCommonHeader(authToken))
                 const data = await response.json();
                 setUser(data || {});
             } catch{
                 console.error("Error fetching user");
             }
         }
-        if (token && username) fetchUserByUsername();
-    }, [username]);
+        if (authToken && username) fetchUserByUsername();
+    }, [authToken, username]);
     return (user);
+}
+
+
+
+//// Non hook functions for handling login process
+
+export const loginAPI = async (username, password) => {
+    try {
+        const response = await fetch(`${url}login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        return data?.token || null;
+    } catch {
+        console.error("Error fetching token");
+        return null;
+    }
+};
+
+export const getUserAPI = async (username, token) => {
+    try {
+        const response = await fetch(`${url}username/${username}`, getCommonHeader(token));
+        const data = await response.json();
+        return data || null;
+    } catch {
+        console.error('Error fetching user');
+        return null;
+    }
 }

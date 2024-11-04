@@ -1,11 +1,10 @@
 import { RoleEnum } from "../enum/Role";
-import { getStorageItem } from "../functions/functions";
-import { useState, useEffect } from "react";
-
+import { useContext, useState } from "react";
+import { UserContext } from '../functions/UserContext';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const currentUser = getStorageItem('currentUser')
+    const { currentUser } = useContext(UserContext);
 
     const handleLogout = () => {
         console.log("LOGOUT TEST")
