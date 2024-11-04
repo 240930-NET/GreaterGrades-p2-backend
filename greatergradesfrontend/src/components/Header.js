@@ -1,14 +1,14 @@
 import { RoleEnum } from "../enum/Role";
+import { getStorageItem } from "../functions/functions";
 const Header = () => {
-    const storedUser = localStorage.getItem('currentUser');
-    const parsedUser = JSON.parse(storedUser);
+    const currentUser = getStorageItem('currentUser')
 
     return (
         <div className="student-header">
             <div className="student-info">
-                <h3>{parsedUser?.firstName} {parsedUser?.lastName}</h3>
-                <p>{parsedUser?.username}</p>
-                <p>{RoleEnum[parsedUser?.role]}</p>
+                <h3>{currentUser?.firstName} {currentUser?.lastName}</h3>
+                <p>{currentUser?.username}</p>
+                <p>{RoleEnum[currentUser?.role]}</p>
             </div>
         </div>
     );

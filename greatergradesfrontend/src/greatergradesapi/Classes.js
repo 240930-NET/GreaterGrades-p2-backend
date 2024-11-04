@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getStorageItem } from "../functions/functions";
 
 const url = 'http://localhost:5000/api/Classes/'
 const getCommonHeader = (token) => ({
@@ -13,7 +14,7 @@ export const useGetAllClasses = () => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchClasses = async () => {
             try {
                 const response = await fetch(`${url}`, getCommonHeader(token))
@@ -33,7 +34,7 @@ export const useAddClass = (subject, institutionId) => {
     const [course, setCourse] = useState({})
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchAddClass = async () => {
             try {
                 const response = await fetch(`${url}`, {
@@ -60,7 +61,7 @@ export const useGetClassById = (id) => {
     const [course, setCourse] = useState({});
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchClass = async () => {
             try {
                 const response = await fetch(`${url}${id}`, getCommonHeader(token))
@@ -78,7 +79,7 @@ export const useGetClassById = (id) => {
 
 export const useUpdateClass = (id, subject) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchUpdateClass = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
@@ -101,7 +102,7 @@ export const useUpdateClass = (id, subject) => {
 
 export const useDeleteClass = (id) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchDeleteClass = async () => {
             try {
                 const response = await fetch(`${url}${id}`, {
@@ -123,7 +124,7 @@ export const useDeleteClass = (id) => {
 
 export const useAddStudentToClass = (id, studentId) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchAddStudentToClass = async () => {
             try {
                 const response = await fetch(`${url}${id}/students/${studentId}`, {
@@ -145,7 +146,7 @@ export const useAddStudentToClass = (id, studentId) => {
 
 export const useDeleteStudentFromClass = (id, studentId) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchDeleteStudentFromClass = async () => {
             try {
                 const response = await fetch(`${url}${id}/students/${studentId}`, {
@@ -167,7 +168,7 @@ export const useDeleteStudentFromClass = (id, studentId) => {
 
 export const useAddTeacherToClass = (id, teacherId) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchAddTeacherToClass = async () => {
             try {
                 const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
@@ -189,7 +190,7 @@ export const useAddTeacherToClass = (id, teacherId) => {
 
 export const useDeleteTeacherFromClass = (id, teacherId) => {
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchDeleteTeacherFromClass = async () => {
             try {
                 const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
@@ -214,7 +215,7 @@ export const useGetUsersClasses = (ids) => {
     const [classes, setClasses] = useState([]);
     
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = getStorageItem('authToken');
         const fetchCourses = async () => {
             try {
                 const responses = await Promise.all(
@@ -231,7 +232,7 @@ export const useGetUsersClasses = (ids) => {
                 console.error("Error fetching classes")
             }
         }
-        if (token && ids.length > 0) fetchCourses();
+        if (token && ids?.length > 0) fetchCourses();
     }, [ids])
 
     return classes;

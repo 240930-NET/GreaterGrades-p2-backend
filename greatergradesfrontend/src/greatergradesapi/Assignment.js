@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getStorageItem } from "../functions/functions";
 
 const url = 'http://localhost:5000/api/Assignments/'
 const getCommonHeader = (token) => ({
@@ -12,7 +13,7 @@ export const useGetAllAssignments = () => {
   const [assignments, setAssignments] = useState([])
   
   useEffect(() => {
-    const token = localStorage.getItem('authToken')
+    const token = getStorageItem('authToken')
     const fetchToken = async () => {
       try {
         const response = await fetch(`${url}`, getCommonHeader(token))
@@ -32,7 +33,7 @@ export const useAddAssignment = (name, classId) => {
   const [assignment, setAssignment] = useState({})
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = getStorageItem('authToken');
     const fetchAddAssignment = async () => {
       try {
         const response = await fetch(`${url}`, {
@@ -59,7 +60,7 @@ export const useGetAssingmentById = (id) => {
   const [assignment, setAssignment] = useState({})
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = getStorageItem('authToken');
     const fetchAssignment = async () => {
       try {
         const response = await fetch(`${url}${id}`, getCommonHeader(token))
@@ -77,7 +78,7 @@ export const useGetAssingmentById = (id) => {
 
 export const useUpdateAssignment = (id, name, classId) => {
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = getStorageItem('authToken');
     const fetchUpdateAssignment = async () => {
       try {
         const response = await fetch(`${url}${id}`, {
@@ -99,7 +100,7 @@ export const useUpdateAssignment = (id, name, classId) => {
 
 export const useDeleteAssignment = (id) => {
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = getStorageItem('authToken');
     const fetchDeleteAssignment = async () => {
       try {
         const response = await fetch(`${url}${id}`, {
@@ -117,3 +118,8 @@ export const useDeleteAssignment = (id) => {
     if (token && id) fetchDeleteAssignment();
   }, [id])
 }
+
+
+
+//// Fetches not specifially tied to a single endpoint
+

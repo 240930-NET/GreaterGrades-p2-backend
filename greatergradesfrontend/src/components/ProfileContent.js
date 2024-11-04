@@ -1,18 +1,18 @@
 import { RoleEnum } from "../enum/Role";
+import { getStorageItem } from "../functions/functions";
 import { useGetInstitutionById } from "../greatergradesapi/Institutions";
 const ProfileContent = () => {
     
-    const storedUser = localStorage.getItem('currentUser');
-    const parsedUser = JSON.parse(storedUser);
+    const currentUser = getStorageItem('currentUser')
 
-    const institution = useGetInstitutionById(parsedUser?.institutionId)
+    const institution = useGetInstitutionById(currentUser?.institutionId)
 
     return (
         <div className="student-content">
-            <p>First Name: {parsedUser?.firstName}</p>
-            <p>Last Name: {parsedUser?.lastName}</p>
-            <p>Username: {parsedUser?.username}</p>
-            <p>Role: {RoleEnum[parsedUser?.role]}</p>
+            <p>First Name: {currentUser?.firstName}</p>
+            <p>Last Name: {currentUser?.lastName}</p>
+            <p>Username: {currentUser?.username}</p>
+            <p>Role: {RoleEnum[currentUser?.role]}</p>
             <p>Institution: {institution?.name}</p>
         </div>
     )

@@ -1,8 +1,8 @@
+import { getStorageItem } from "../functions/functions";
 import Tiles from "./Tiles";
 
 const TaughtClasses = () => {
-    const storedUser = localStorage.getItem('currentUser');
-    const parsedUser = JSON.parse(storedUser);
+    const currentUser = getStorageItem('currentUser')
 
 
     return (
@@ -10,7 +10,7 @@ const TaughtClasses = () => {
             <div>
                 <h3>Taught Classes</h3>
                 <div className="student-tiles">
-                    <Tiles courseIds={parsedUser?.taughtClassIds} />
+                    <Tiles courseIds={currentUser?.taughtClassIds} />
                 </div>
             </div>
         </div>
