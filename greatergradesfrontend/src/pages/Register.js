@@ -131,7 +131,7 @@ function Register() {
                             onChange={handleChange}
                             required
                         >
-                            <option value="">Select a role</option>
+                            <option value="" disabled selected hidden>Select a role</option>
                             <option value={0}>Student</option>
                             <option value={1}>Teacher</option>
                         </select>
@@ -146,21 +146,19 @@ function Register() {
                             required
                         >
                             {loading ? (
-                                <option value="">Loading institutions...</option>
+                                <option value="" disabled selected hidden>Loading institutions...</option>
                             ) : (
                                 <>
+                                    <option value='' disabled selected hidden>Select an institution</option>
                                     {institutions.length > 0 ? (
-                                        <>
-                                            <option value="">Select an institution</option>
-                                                {institutions.map(institution => (
-                                                    <option 
-                                                        key={institution.institutionId} 
-                                                        value={institution.institutionId}
-                                                    >
-                                                        {institution.name}
-                                                    </option>
-                                                ))}
-                                        </>
+                                        institutions.map(institution => (
+                                            <option 
+                                                key={institution.institutionId} 
+                                                value={institution.institutionId}
+                                            >
+                                                {institution.name}
+                                            </option>
+                                        ))
                                     ) : (
                                         <option value=''>No instituions found</option>
                                     )}
