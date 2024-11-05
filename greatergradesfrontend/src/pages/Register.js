@@ -146,21 +146,25 @@ function Register() {
                             required
                         >
                             {loading ? (
-                                <option value="" disabled selected hidden>Loading institutions...</option>
+                                <option value="" disabled hidden>Loading institutions...</option>
                             ) : (
                                 <>
-                                    <option value='' disabled selected hidden>Select an institution</option>
                                     {institutions.length > 0 ? (
-                                        institutions.map(institution => (
-                                            <option 
-                                                key={institution.institutionId} 
-                                                value={institution.institutionId}
-                                            >
-                                                {institution.name}
+                                        <>
+                                            <option value='' disabled hidden>
+                                                Select an institution
                                             </option>
-                                        ))
+                                                {institutions.map(institution => (
+                                                    <option 
+                                                        key={institution.institutionId} 
+                                                        value={institution.institutionId}
+                                                    >
+                                                        {institution.name}
+                                                    </option>
+                                                ))}
+                                        </>
                                     ) : (
-                                        <option value=''>No instituions found</option>
+                                        <option value='' disabled selected hidden>No instituions found</option>
                                     )}
                                 </>
                             )}
