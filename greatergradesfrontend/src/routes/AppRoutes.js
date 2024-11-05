@@ -1,5 +1,6 @@
 import Dashboard from "../pages/Dashboard";
-import TempLogin from "../pages/TempLogin";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Course from "../pages/Course"
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext } from "react";
@@ -11,9 +12,10 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={!authToken ? <Navigate to='/login' /> : <Navigate to ='/dashboard' />} />
-            <Route path='/login' element={<TempLogin />} />
+            <Route path='/login' element={!authToken ? <Login /> : <Navigate to='/dashboard' />} />
             <Route path='/dashboard' element={!authToken ? <Navigate to='/login' /> : <Dashboard />} />
             <Route path='/course' element={!authToken ? <Navigate to='/login' /> : <Course />} />
+            <Route path='/register' element={!authToken ? <Register /> : <Navigate to='/dashboard' />} />
         </Routes >
     )
 }

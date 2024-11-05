@@ -4,6 +4,7 @@ import './styles/sidebar.css';
 import './styles/header.css';
 import './styles/profile.css';
 import './styles/tiles.css'
+import './styles/login.css'
 import AppRoutes from './routes/AppRoutes';
 
 function App() {

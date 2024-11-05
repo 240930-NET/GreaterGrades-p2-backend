@@ -169,3 +169,18 @@ export const getUserAPI = async (username, token) => {
         return null;
     }
 }
+
+export const registerAPI = async (username, password, firstName, lastName, role, institutionId) => {
+    try{
+        const response = await fetch(`${url}register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, firstName, lastName, role, institutionId })
+        });
+        const data = await response.json();
+        return data || null;
+    } catch {
+        console.error("Failed to register user")
+        return null;
+    }
+}
