@@ -122,3 +122,17 @@ export const useDeleteInstitution = (id) => {
         if (authToken && id) fetchDeleteInstitution();
     }, [authToken, id])
 }
+
+
+//// non hook functions
+
+export const getInstitutionsAPI = async () => {
+    try {
+        const response = await fetch(`${url}`);
+        const data = await response.json();
+        return data || null;
+    } catch {
+        console.error("Error fetching institutions")
+        return null;
+    }
+}
