@@ -28,7 +28,6 @@ namespace GreaterGradesBackend.Api.Controllers
             return Ok(institutions);
         }
 
-        [Authorize(Roles = "Admin,InstitutionAdmin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<InstitutionDto>> GetInstitutionById(int id)
         {
