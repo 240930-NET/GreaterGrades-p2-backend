@@ -7,7 +7,7 @@ import { FaUser, FaUserCircle, FaBuilding, FaIdBadge } from 'react-icons/fa';
 const ProfileContent = () => {
     
     const { currentUser } = useContext(UserContext);
-    const institution = useGetInstitutionById(currentUser?.institutionId);
+    const { institution, loading } = useGetInstitutionById(currentUser?.institutionId);
 
     return (
         <div className="content-card">
@@ -25,7 +25,7 @@ const ProfileContent = () => {
                 <FaIdBadge /> <span className="field-label">Role:</span> {RoleEnum[currentUser?.role]}
             </div>
             <div className="profile-field">
-                <FaBuilding /> <span className="field-label">Institution:</span> {institution?.name}
+                <FaBuilding /> <span className="field-label">Institution:</span> {loading ? 'Loading...' : institution?.name}
             </div>
         </div>
     );
