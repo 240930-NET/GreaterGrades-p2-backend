@@ -131,7 +131,7 @@ function Register() {
                             onChange={handleChange}
                             required
                         >
-                            <option value="" disabled selected hidden>Select a role</option>
+                            <option value="" disabled hidden>Select a role</option>
                             <option value={0}>Student</option>
                             <option value={1}>Teacher</option>
                         </select>
@@ -164,7 +164,7 @@ function Register() {
                                                 ))}
                                         </>
                                     ) : (
-                                        <option value='' disabled selected hidden>No instituions found</option>
+                                        <option value='' disabled hidden>No instituions found</option>
                                     )}
                                 </>
                             )}
