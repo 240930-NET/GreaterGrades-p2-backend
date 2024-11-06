@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { addClass, addTeacherToClass } from '../greatergradesapi/Classes';
 import { UserContext } from '../functions/UserContext';
+import { setStorageItem } from '../functions/LocalStorage';
 
 const AddClassPopup = ({ onClose, institutionId }) => {
     const [subject, setSubject] = useState('');
@@ -24,6 +25,7 @@ const AddClassPopup = ({ onClose, institutionId }) => {
             };
     
             setCurrentUser(updatedUser);
+            setStorageItem('currentUser', updatedUser);
             onClose();
         } else {
             setError('Failed to create class.');
