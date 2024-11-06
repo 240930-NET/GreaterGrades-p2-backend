@@ -9,71 +9,35 @@ import { UserContext } from '../functions/UserContext';
 import { useGetUsersClasses } from "../greatergradesapi/Classes";
 
 const Dashboard = () => {
-
     const { currentUser } = useContext(UserContext);
     const [selectedItem, setSelectedItem] = useState('dashboard');
     const [sidebarItems, setSidebarItems] = useState([]);
-    const courses = useGetUsersClasses(currentUser?.classIds)
+    const courses = useGetUsersClasses(currentUser?.classIds);
     const courseNames = useMemo(() => {
         return courses.flatMap(course => course.subject || '');
-    }, [courses])
+    }, [courses]);
 
     useEffect(() => {
         const newSidebarItems = [];
 
-        // User is Student
-        if (currentUser?.role === 0) {
-            if (currentUser?.taughtclassIds > 0) {
-                newSidebarItems.push(
-                    { id: 'dashboard', label: 'Dashboard'},
-                    { id: 'profile', label: 'Profile'},
-                    { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: courseNames},
-                    { id: 'taught classes', label: 'Taught Classes'}
-                )
-            } else {
-                newSidebarItems.push(
-                    { id: 'dashboard', label: 'Dashboard'},
-                    { id: 'profile', label: 'Profile'},
-                    { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: courseNames}
-                )
-            }
-        }
-
-        // User is Teacher
-        else if (currentUser?.role === 1) {
-            newSidebarItems.push(
-                { id: 'dashboard', label: 'Dashboard'},
-                { id: 'profile', label: 'Profile'},
-                { id: 'enrolled classes', label: 'Enrolled Classes'},
-                { id: 'taught classes', label: 'Taught Classes'}
-            )
-        }
-
-        // User is Institutional Admin
-        else if (currentUser?.role === 2) {
-            newSidebarItems.push(
-                { id: 'dashboard', label: 'Dashboard'},
-                { id: 'profile', label: 'Profile'},
-                { id: 'enrolled classes', label: 'Enrolled Classes'},
-                { id: 'taught classes', label: 'Taught Classes'}
-            )
-        }
-
-        // User is Admin
-        else if (currentUser?.role === 3) {
-            newSidebarItems.push(
-                { id: 'dashboard', label: 'Dashboard'},
-                { id: 'profile', label: 'Profile'},
-                { id: 'enrolled classes', label: 'Enrolled Classes', assignmentLabels: courseNames},
-                { id: 'taught classes', label: 'Taught Classes'}
-            )
-        }
+        newSidebarItems.push(
+            { id: 'dashboard', label: 'Dashboard' },
+            { id: 'profile', label: 'Profile' },
+            {
+                id: 'enrolled classes',
+                label: 'Enrolled Classes',
+                courses: courses.map(course => ({
+                    id: course.id,
+                    label: course.subject,
+                    assignments: course.assignments || []
+                }))
+            },
+            { id: 'taught classes', label: 'Taught Classes' }
+        );
 
         setSidebarItems(newSidebarItems);
-    }, [currentUser, courseNames])
+    }, [currentUser, courses]);
 
-
-    // Switch statement to display which component should take up the main screen.
     const renderContent = () => {
         switch (selectedItem) {
             case 'dashboard':
@@ -81,13 +45,13 @@ const Dashboard = () => {
             case 'profile':
                 return <ProfileContent />;
             case 'enrolled classes':
-                return <EnrolledClasses />;
+                return <EnrolledClasses courses={courses} />;
             case 'taught classes':
                 return <TaughtClasses />;
             default:
-                return <div>doesnt match....</div>
+                return <div>doesnt match....</div>;
         }
-    }
+    };
 
     return (
         <main className='student-dashboard'>

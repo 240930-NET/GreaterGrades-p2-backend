@@ -39,7 +39,6 @@
     padding-left: 6px;
 }
 
-
 .dashboard-sidebar li ul {
     padding-left: 0;
     margin-top: 5px;
@@ -64,6 +63,18 @@
     color: #B8B8B8;
 }
 
+/* New styles for assignments */
+.dashboard-sidebar li ul li.dashboard-sidebar-assignment {
+    font-size: 0.9rem;
+    background-color: #505050;
+    padding: 6px 10px;
+    color: #D0D0D0;
+}
+
 .dashboard-sidebar li ul li:hover {
     background-color: #5A5A5A;
+}
+
+.dashboard-sidebar li ul li.dashboard-sidebar-assignment:hover {
+    background-color: #6A6A6A;
 }
