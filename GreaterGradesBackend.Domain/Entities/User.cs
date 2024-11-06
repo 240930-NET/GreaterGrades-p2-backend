@@ -14,6 +14,9 @@ namespace GreaterGradesBackend.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
+
+
+        //TODO: Specify Unique
         [Required]
         [MaxLength(50)]
         public string Username { get; set; }

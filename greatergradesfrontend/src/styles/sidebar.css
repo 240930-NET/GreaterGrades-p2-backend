@@ -4,7 +4,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative; /* Ensures child absolute elements are anchored here */
+    position: relative;
 }
 
 .dashboard-sidebar ul {
@@ -24,7 +24,7 @@
     justify-content: space-between;
     transition: background-color 0.3s, color 0.3s;
     color: #E0E0E0;
-    position: relative; /* Needed for absolute positioning of the dropdown */
+    position: relative;
 }
 
 .dashboard-sidebar ul li:hover {
@@ -39,14 +39,14 @@
     padding-left: 6px;
 }
 
-/* Style for the dropdown items */
+
 .dashboard-sidebar li ul {
     padding-left: 0;
     margin-top: 5px;
-    position: absolute; /* Positions the dropdown relative to the parent */
+    position: absolute;
     left: 0;
-    top: 100%; /* Places dropdown below the parent item */
-    width: 100%; /* Ensures the dropdown is as wide as the parent */
+    top: 100%;
+    width: 100%;
     background-color: #3F3F3F;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);

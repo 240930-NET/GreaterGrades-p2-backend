@@ -68,7 +68,7 @@ namespace GreaterGradesBackend.Api.Controllers
             return Forbid();
         }
 
-        [Authorize(Roles = "Admin,InstitutionAdmin")]
+        [Authorize(Roles = "Admin,InstitutionAdmin,Teacher")]
         [HttpPost]
         public async Task<ActionResult<ClassDto>> CreateClass(CreateClassDto createClassDto)
         {
@@ -80,7 +80,7 @@ namespace GreaterGradesBackend.Api.Controllers
             var currentUserRole = User.FindFirst(ClaimTypes.Role)?.Value;
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.Name)?.Value);
 
-            if (currentUserRole == "InstitutionAdmin")
+            if (currentUserRole == "InstitutionAdmin" || currentUserRole == "Teacher")
             {
                 var user = await _userService.GetUserByIdAsync(currentUserId);
                 if (user.InstitutionId != createClassDto.InstitutionId)

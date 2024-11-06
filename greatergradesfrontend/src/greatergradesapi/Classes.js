@@ -30,31 +30,24 @@ export const useGetAllClasses = () => {
 }
 
 
-export const useAddClass = (subject, institutionId) => {
-    const [course, setCourse] = useState({});
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchAddClass = async () => {
-            try {
-                const response = await fetch(`${url}`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ subject, institutionId })
-                })
-                const data = await response.json();
-                setCourse(data || {})
-            } catch {
-                console.error("Error adding class")
-            }
-        }
-        if (authToken && subject && institutionId) fetchAddClass();
-    }, [authToken, subject, institutionId])
-    return course;
-}
+export const addClass = async (subject, institutionId, authToken) => {
+    try {
+        const response = await fetch(`${url}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ subject, institutionId })
+        });
+        if (!response.ok) throw new Error("Failed to add class");
+        console.log(response)
+        return await response.json();
+    } catch (error) {
+        console.error("Error adding class:", error);
+        return null;
+    }
+};
 
 
 export const useGetClassById = (id) => {
@@ -124,27 +117,20 @@ export const useDeleteClass = (id) => {
 }
 
 
-export const useAddStudentToClass = (id, studentId) => {
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchAddStudentToClass = async () => {
-            try {
-                const response = await fetch(`${url}${id}/students/${studentId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error adding student to class")
-            }
-        }
-        if (authToken && id && studentId) fetchAddStudentToClass();
-    }, [authToken, id, studentId])
-}
+export const addTeacherToClass = async (id, teacherId, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+        });
+        if (response.status !== 204) throw new Error("Failed to add teacher");
+    } catch (error) {
+        console.error("Error adding teacher to class:", error);
+    }
+};
 
 
 export const useDeleteStudentFromClass = (id, studentId) => {
