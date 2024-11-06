@@ -20,7 +20,7 @@ namespace GreaterGradesBackend.Services.Interfaces
         
         Task<bool> UpdateClassAsync(int classId, UpdateClassDto updateClassDto);
 
-        Task<IEnumerable<Class>> GetClassesByInstitutionIdAsync(int IntitutionId);
+        Task<IEnumerable<ClassDto>> GetClassesByInstitutionIdAsync(int IntitutionId);
 
         
         

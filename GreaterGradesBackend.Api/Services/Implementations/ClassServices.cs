@@ -111,9 +111,10 @@ namespace GreaterGradesBackend.Services.Implementations
         }
 
 
-        public async Task<IEnumerable<Class>> GetClassesByInstitutionIdAsync(int institutionId)
+        public async Task<IEnumerable<ClassDto>> GetClassesByInstitutionIdAsync(int institutionId)
         {
-            return await _unitOfWork.Classes.GetClassesByInstitutionIdAsync(institutionId);
+            var classes = await _unitOfWork.Classes.GetClassesByInstitutionIdAsync(institutionId);
+            return _mapper.Map<IEnumerable<ClassDto>>(classes);
         }
 
         public async Task<bool> AddTeacherToClassAsync(int classId, int userId)

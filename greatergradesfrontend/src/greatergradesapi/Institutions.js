@@ -30,30 +30,21 @@ export const useGetAllInstitutions = () => {
 }
 
 
-export const useAddInstitution = (name) => {
-    const [institution, setInstitution] = useState({})
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchAddInstitution = async () => {
-            try {
-                const response = await fetch(`${url}`, {
-                    method: 'POSt',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name })
-                })
-                const data = await response.json();
-                setInstitution(data || {})
-            } catch {
-                console.error('Error adding institution')
-            }
-        }
-        if (authToken && name) fetchAddInstitution();
-    }, [authToken, name]);
-    return institution;
+export const addInstitution = async (name, authToken) => {
+    try {
+        const response = await fetch(`${url}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name })
+        })
+        return await response.json();
+    } catch (error) {
+        console.error('Error adding institution:', error)
+        return null;
+    }
 }
 
 
@@ -80,50 +71,40 @@ export const useGetInstitutionById = (id) => {
 }
 
 
-export const useUpdateInstitution = (id, name) => {
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchUpdateInstitution = async () => {
-            try {
-                const response = await fetch(`${url}${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name })
-                });
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error updating institution")
-            }
-        }
-        if (authToken && id && name) fetchUpdateInstitution();
-    }, [authToken, id, name])
+export const updateInstitution = async (id, name, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name })
+        });
+        if (response.status !== 204) throw new Error();
+        return 'Updated'
+    } catch (error) {
+        console.error("Error updating institution:", error)
+        return null;
+    }
 }
 
 
-export const useDeleteInstitution = (id) => {
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchDeleteInstitution = async () => {
-            try {
-                const response = await fetch(`${url}${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error deleting institution")
+export const deleteInstitution = async (id, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
             }
-        }
-        if (authToken && id) fetchDeleteInstitution();
-    }, [authToken, id])
+        });
+        if (response.status !== 204) throw new Error();
+        return 'Deleted';
+    } catch {
+        console.error("Error deleting institution")
+        return null;
+    }
 }
 
 

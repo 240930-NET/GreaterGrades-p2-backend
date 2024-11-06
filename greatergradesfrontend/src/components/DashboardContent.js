@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from '../functions/UserContext';
+import AdminContent from './AdminContent';
 import Tiles from "./Tiles";
 
 
@@ -68,39 +69,12 @@ const DashboardContent = () => {
         }
     }
 
-    // if user is institution admin display this
-    else if (currentUser?.role === 2){
+    // if user is any type of admin return this
+    else if (currentUser?.role === 2 || currentUser?.role === 3){
         return (
-            <div></div>
-            //<AdminContent />
+            <AdminContent />
         )
     }
-    //// CHANGE TO 3 WHEN DONE TESTING AND REMOVE 3 BELOW
-    else if (currentUser?.role === 4) {
-        return (
-            <div></div>
-            //<AdminContent />
-        )
-    }
-
-    // if user is admin display this
-    else if (currentUser?.role === 3){
-        return (
-            <div className="student-content">
-                <div>
-                    <h3>Enrolled Classes</h3>
-                    <div className="student-tiles">
-                        <Tiles courseIds={currentUser?.classIds} />
-                    </div>
-                    <h3>Taught Classes</h3>
-                    <div className="student-tiles">
-                        <Tiles courseIds={currentUser?.taughtClassIds} />
-                    </div>
-                </div>
-            </div>
-        )
-    }
-    
 }
 
 export default DashboardContent;

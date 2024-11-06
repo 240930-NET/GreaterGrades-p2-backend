@@ -54,6 +54,10 @@ namespace GreaterGradesBackend.Api.Controllers
                 {
                     return Forbid();
                 }
+                else
+                {
+                    return Ok(classDto);
+                }
             }
             else
             {
