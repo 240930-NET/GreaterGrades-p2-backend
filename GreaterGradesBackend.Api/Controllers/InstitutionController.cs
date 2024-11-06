@@ -21,7 +21,6 @@ namespace GreaterGradesBackend.Api.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InstitutionDto>>> GetAllInstitutions()
         {
@@ -29,7 +28,6 @@ namespace GreaterGradesBackend.Api.Controllers
             return Ok(institutions);
         }
 
-        [Authorize(Roles = "Admin,InstitutionAdmin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<InstitutionDto>> GetInstitutionById(int id)
         {

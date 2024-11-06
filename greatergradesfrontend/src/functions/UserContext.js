@@ -25,16 +25,20 @@ export const UserProvider = ({children}) => {
     };
 
     const checkToken = () => {
-        if (getStorageItem('authToken') === null) {
-            
-        } else if(checkExpired('authToken')) {
-            logout();
+        const path = window.location.pathname;
+        if (!getStorageItem('authToken') || checkExpired('authToken')) {
+            if (path !== '/login' && path !== '/register') {
+                logout();
+            }
         }
     };
 
     useEffect(() => {
         const userActivity = () => {
-            checkToken();
+            const path = window.location.pathname;
+            if (path !== '/login' && path !== '/register') {
+                checkToken();
+            }
         }
 
         window.addEventListener('click', userActivity);
@@ -42,7 +46,7 @@ export const UserProvider = ({children}) => {
         return () => {
             window.removeEventListener('click', userActivity);
         }
-    })
+    }, [])
 
     
 

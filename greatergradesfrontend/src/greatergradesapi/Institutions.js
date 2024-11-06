@@ -59,6 +59,7 @@ export const useAddInstitution = (name) => {
 
 export const useGetInstitutionById = (id) => {
     const [institution, setInstitution] = useState({})
+    const [loading, setLoading] = useState(true);
     const { authToken } = useContext(UserContext);
 
     useEffect(() => {
@@ -69,11 +70,13 @@ export const useGetInstitutionById = (id) => {
                 setInstitution(data || {});
             } catch {
                 console.error("Error fetching institution")
+            } finally {
+                setLoading(false);
             }
         }
         if (authToken && id) fetchInstitution();
     }, [authToken, id])
-    return institution;
+    return {institution, loading};
 }
 
 
@@ -121,4 +124,18 @@ export const useDeleteInstitution = (id) => {
         }
         if (authToken && id) fetchDeleteInstitution();
     }, [authToken, id])
+}
+
+
+//// non hook functions
+
+export const getInstitutionsAPI = async () => {
+    try {
+        const response = await fetch(`${url}`);
+        const data = await response.json();
+        return data || null;
+    } catch {
+        console.error("Error fetching institutions")
+        return null;
+    }
 }

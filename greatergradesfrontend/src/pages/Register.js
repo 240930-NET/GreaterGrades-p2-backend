@@ -1,21 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { registerAPI, loginAPI } from '../greatergradesapi/Auth';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../functions/UserContext";
+import { getInstitutionsAPI } from '../greatergradesapi/Institutions';
 
 function Register() {
     const { login } = useContext(UserContext);
+    const [institutions, setInstitutions] = useState([]);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true)
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         firstName: '',
         lastName: '',
-        role: 0,
-        institutionId: 1 
+        role: '',
+        institutionId: ''
     });
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
+
 
     const handleChange = (e) => {
         setFormData({
@@ -26,6 +30,10 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.institutionId) {
+            setError('Please select an institution');
+            return;
+        }
         try {
             const user = await registerAPI(
                 formData.username,
@@ -44,12 +52,26 @@ function Register() {
                 }
             } else {
                 setError('Registration failed. Please try again.');
-                throw new Error(error)
             }
         } catch (err) {
-            console.alert(error);
+            console.error(error);
         }
     };
+
+    useEffect(() => {
+        const fetchInstitutions = async () => {
+            try {
+                const data = await getInstitutionsAPI();
+                setInstitutions(data || []);
+            } catch {
+                console.error("Error fetching institutions")
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchInstitutions();
+    }, [])
+    console.log(institutions)
 
     return (
         <div className="login-container">
@@ -109,8 +131,43 @@ function Register() {
                             onChange={handleChange}
                             required
                         >
+                            <option value="" disabled hidden>Select a role</option>
                             <option value={0}>Student</option>
                             <option value={1}>Teacher</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="institutionId">Institution</label>
+                        <select
+                            id="institutionId"
+                            name="institutionId"
+                            value={formData.institutionId}
+                            onChange={handleChange}
+                            required
+                        >
+                            {loading ? (
+                                <option value="" disabled hidden>Loading institutions...</option>
+                            ) : (
+                                <>
+                                    {institutions.length > 0 ? (
+                                        <>
+                                            <option value='' disabled hidden>
+                                                Select an institution
+                                            </option>
+                                                {institutions.map(institution => (
+                                                    <option 
+                                                        key={institution.institutionId} 
+                                                        value={institution.institutionId}
+                                                    >
+                                                        {institution.name}
+                                                    </option>
+                                                ))}
+                                        </>
+                                    ) : (
+                                        <option value='' disabled hidden>No instituions found</option>
+                                    )}
+                                </>
+                            )}
                         </select>
                     </div>
                     {error && <div className="error-message">{error}</div>}
