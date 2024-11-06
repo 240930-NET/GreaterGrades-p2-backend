@@ -237,7 +237,7 @@ namespace GreaterGradesBackend.Api.Controllers
             if (currentUserRole == "Admin" || currentUserRole == "InstitutionAdmin" || currentUserRole == "Teacher")
             {
                 var classDto = await _classService.GetClassByIdAsync(id);
-                if (classDto == null || currentUserRole == "Teacher"))
+                if (classDto == null || currentUserRole == "Teacher")
                 {
                     return Forbid();
                 }
