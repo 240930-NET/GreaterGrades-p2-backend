@@ -8,41 +8,78 @@ const DashboardContent = () => {
 
     // if user is student display this
     if (currentUser?.role === 0){
-        return (
-            <div className="student-content">
-                <div className="student-tiles">
-                    <Tiles />
+        if (currentUser?.taughtClassIds < 0) {
+            return (
+                <div className="student-content">
+                    <div>
+                        <h3>Enrolled Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className="student-content">
+                    <div>
+                        <h3>Enrolled Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles courseIds={currentUser?.classIds} />
+                        </div>
+                        <h3>Taught Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 
     // if user is teacher display this
     else if (currentUser?.role === 1){
-        return (
-            <div className="student-content">
-                <div>
-                    <h3>Enrolled Classes</h3>
-                    <div className="student-tiles">
-                        <Tiles courseIds={currentUser?.classIds} />
-                    </div>
-                    <h3>Taught Classes</h3>
-                    <div className="student-tiles">
-                        <Tiles courseIds={currentUser?.taughtClassIds} />
+        if (currentUser?.classIds > 0){
+            return (
+                <div className="student-content">
+                    <div>
+                        <h3>Enrolled Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles courseIds={currentUser?.classIds} />
+                        </div>
+                        <h3>Taught Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
-    }    
+            )
+        } else {
+            return (
+                <div className="student-content">
+                    <div>
+                        <h3>Taught Classes</h3>
+                        <div className="student-tiles">
+                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     // if user is institution admin display this
     else if (currentUser?.role === 2){
         return (
-            <div className="student-content">
-                <div className="student-tiles">
-                    <Tiles />
-                </div>
-            </div>
+            <div></div>
+            //<AdminContent />
+        )
+    }
+    //// CHANGE TO 3 WHEN DONE TESTING AND REMOVE 3 BELOW
+    else if (currentUser?.role === 4) {
+        return (
+            <div></div>
+            //<AdminContent />
         )
     }
 
