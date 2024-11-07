@@ -86,6 +86,7 @@ function Register() {
                             type="text"
                             value={formData.username}
                             onChange={handleChange}
+                            placeholder='Enter your username'
                             required
                         />
                     </div>
@@ -97,6 +98,7 @@ function Register() {
                             type="password"
                             value={formData.password}
                             onChange={handleChange}
+                            placeholder='Enter your password'
                             required
                         />
                     </div>
@@ -108,6 +110,7 @@ function Register() {
                             type="text"
                             value={formData.firstName}
                             onChange={handleChange}
+                            placeholder='Enter your first name'
                             required
                         />
                     </div>
@@ -119,6 +122,7 @@ function Register() {
                             type="text"
                             value={formData.lastName}
                             onChange={handleChange}
+                            placeholder='Enter your last name'
                             required
                         />
                     </div>
