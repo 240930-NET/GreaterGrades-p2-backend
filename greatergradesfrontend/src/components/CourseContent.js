@@ -7,12 +7,14 @@ import { deleteStudentFromClass } from "../greatergradesapi/Classes";
 import AddStudentToClassPopup from './AddStudentToClassPopup';
 import AssignmentTile from './AssignmentTile';
 import AddAssignmentPopup from './AddAssignmentPopup';
+import AddTeacherToClassPopup from './AddTeacherToClassPopup';
 
 const CourseContent = () => {
     const { currentUser, authToken } = useContext(UserContext);
     const currentCourse = getStorageItem('currentCourse');
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isAssignmentPopupOpen, setIsAssignmentPopupOpen] = useState(false);
+    const [isStudentPopupOpen, setIsStudentPopupOpen] = useState(false);
+    const [isTeacherPopupOpen, setIsTeacherPopupOpen] = useState(false);
 
     const handleDeleteStudent = async (studentId) => {
         try {
@@ -34,7 +36,7 @@ const CourseContent = () => {
                 <div className="course-list-title">
                     <p>Students: {currentCourse?.students?.length || 0}</p>
                     {isTeacherOrAdmin && (
-                        <button onClick={() => setIsPopupOpen(true)}>Add Student</button>
+                        <button onClick={() => setIsStudentPopupOpen(true)}>Add Student</button>
                     )}
                     <div className="course-list-line" />
                     <div className="course-list-entries">
@@ -52,6 +54,9 @@ const CourseContent = () => {
                 </div>
                 <div className="course-list-title">
                     <p>Teachers: {currentCourse?.teachers?.length || 0}</p>
+                    {currentUser.role > 1 && (
+                        <button onClick={() => setIsTeacherPopupOpen(true)}>Add Teacher</button>
+                    )}
                     <div className="course-list-line" />
                     <div className="course-list-entries">
                         {currentCourse?.teachers.map((teacher, index) => (
@@ -80,9 +85,9 @@ const CourseContent = () => {
                     </div>
                 </div>
             </div>
-            {isPopupOpen && (
+            {isStudentPopupOpen && (
                 <AddStudentToClassPopup 
-                    onClose={() => setIsPopupOpen(false)} 
+                    onClose={() => setIsStudentPopupOpen(false)} 
                     courseId={currentCourse?.classId} 
                 />
             )}
@@ -90,6 +95,12 @@ const CourseContent = () => {
                 <AddAssignmentPopup
                     onClose={() => setIsAssignmentPopupOpen(false)}
                     classId={currentCourse?.classId}
+                />
+            )}
+            {isTeacherPopupOpen && (
+                <AddTeacherToClassPopup 
+                    onClose={() => setIsTeacherPopupOpen(false)} 
+                    courseId={currentCourse?.classId} 
                 />
             )}
         </div>
