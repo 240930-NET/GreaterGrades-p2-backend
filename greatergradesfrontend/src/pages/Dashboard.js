@@ -5,6 +5,7 @@ import DashboardContent from "../components/DashboardContent";
 import ProfileContent from "../components/ProfileContent";
 import EnrolledClasses from "../components/EnrolledClasses";
 import TaughtClasses from "../components/TaughtClasses";
+import CourseContent from "../components/CourseContent";
 import { UserContext } from '../functions/UserContext';
 import { useGetUsersClasses } from "../greatergradesapi/Classes";
 import ClassesContent from "../components/ClassesContent";
@@ -33,7 +34,8 @@ const Dashboard = () => {
                             assignments: course.assignments || []
                         }))
                     },
-                    { id: 'taught classes', label: 'Taught Classes' }
+                    { id: 'taught classes', label: 'Taught Classes' },
+                    { id: 'course info', label: 'Course Info' },
                 );
             } else {
                 newSidebarItems.push(
@@ -48,6 +50,7 @@ const Dashboard = () => {
                             assignments: course.assignments || []
                         }))
                     },
+                    { id: 'course info', label: 'Course Info' },
                 );
             }
         }
@@ -66,13 +69,15 @@ const Dashboard = () => {
                             assignments: course.assignments || []
                         }))
                     },
-                    { id: 'taught classes', label: 'Taught Classes' }
+                    { id: 'taught classes', label: 'Taught Classes' },
+                    { id: 'course info', label: 'Course Info' },
                 );
             } else {
                 newSidebarItems.push(
                     { id: 'dashboard', label: 'Dashboard' },
                     { id: 'profile', label: 'Profile' },
-                    { id: 'taught classes', label: 'Taught Classes' }
+                    { id: 'taught classes', label: 'Taught Classes' },
+                    { id: 'course info', label: 'Course Info' },
                 );
             }
         }
@@ -81,7 +86,8 @@ const Dashboard = () => {
             newSidebarItems.push(
                 { id: 'dashboard', label: 'Dashboard' },
                 { id: 'profile', label: 'Profile' },
-                { id: 'classes', label: 'Classes' }
+                { id: 'classes', label: 'Classes' },
+                { id: 'course info', label: 'Course Info' },
             );
         }
 
@@ -90,7 +96,8 @@ const Dashboard = () => {
                 { id: 'dashboard', label: 'Dashboard'},
                 { id: 'profile', label: 'Profile' },
                 { id: 'classes', label: 'Classes' },
-                { id: 'institutions', label: 'Institutions' }
+                { id: 'institutions', label: 'Institutions' },
+                { id: 'course info', label: 'Course Info' },
             );
         }
 
@@ -111,6 +118,8 @@ const Dashboard = () => {
                 return <ClassesContent />;
             case 'institutions':
                 return <InstitutionContent />
+            case 'course info':
+                return <CourseContent />;
             default:
                 return <div>doesnt match....</div>;
         }

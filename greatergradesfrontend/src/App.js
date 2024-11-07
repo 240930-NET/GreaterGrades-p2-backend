@@ -5,6 +5,7 @@ import './styles/header.css';
 import './styles/profile.css';
 import './styles/tiles.css'
 import './styles/login.css'
+import './styles/course.css'
 import './styles/taughtClasses.css'
 import './styles/addClassPopup.css';
 
