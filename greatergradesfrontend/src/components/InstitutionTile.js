@@ -5,16 +5,23 @@ import { UserContext } from "../functions/UserContext";
 import UpdateInstitutionPopup from "./UpdateInstitutionPopup";
 
 const InstitutionTile = () => {
-    const instituitons = useGetAllInstitutions();
     const { authToken } = useContext(UserContext);
     const [popupInstitutionId, setPopupInstitutionId] = useState(null);
+    const [refreshInstitutions, setRefreshInstitutions] = useState(false);
+    const instituitons = useGetAllInstitutions(refreshInstitutions);
 
-    const handleRemoveInstitutionClick = (id) => {
-        deleteInstitution(id, authToken)
+    const handleRemoveInstitutionClick = async (id) => {
+        await deleteInstitution(id, authToken);
+        setRefreshInstitutions((prev) => !prev);
     }
 
     const handleUpdateInstitutionClick = (id) => {
         setPopupInstitutionId((prevId) => ( prevId === id ? null : id));
+    }
+
+    const handlePopupClose = () => {
+        setPopupInstitutionId(null);
+        setRefreshInstitutions((prev) => !prev);
     }
 
     return (
@@ -32,7 +39,7 @@ const InstitutionTile = () => {
                         </button>
                     </div>
                     {popupInstitutionId === institution.institutionId && (
-                        <UpdateInstitutionPopup onClose={() => setPopupInstitutionId(null)} institutionId={institution.institutionId} />
+                        <UpdateInstitutionPopup onClose={handlePopupClose} institutionId={institution.institutionId} />
                     )}
                 </div>
             ))}

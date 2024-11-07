@@ -10,7 +10,7 @@ const getCommonHeader = (token) => ({
 });
 
 
-export const useGetAllInstitutions = () => {
+export const useGetAllInstitutions = (shouldRefresh) => {
     const [institutions, setInstitutions] = useState([])
     const { authToken } = useContext(UserContext);
 
@@ -25,7 +25,7 @@ export const useGetAllInstitutions = () => {
             }
         }
         if (authToken) fetchInstitutions();
-    }, [authToken])
+    }, [authToken, shouldRefresh])
     return institutions;
 }
 
