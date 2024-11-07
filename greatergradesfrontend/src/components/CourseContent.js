@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from '../functions/UserContext';
 import { getStorageItem } from "../functions/LocalStorage";
-import forestImage from "../images/forest.jfif";
 
 const CourseContent = () => {
     const {currentUser} = useContext(UserContext);
@@ -17,15 +16,34 @@ const CourseContent = () => {
         )
     }
 
-    // if user is teacher display this
-    else if (currentUser?.role === 1){
+    // if user is teacher or admin display this
+    else{
         return (
             <div className="course-content">
                 <h3 className="course-title">{getStorageItem('currentCourse').subject}</h3>
-                <img src={forestImage} alt="Course placeholder" className="course-image"/>
-                <div className="course-footer">
-                    <p>{getStorageItem('currentCourse').students?.length || 0} Students</p>
-                    <p>{getStorageItem('currentCourse').teachers?.length || 0} Teachers</p>
+                <div className="course-body">
+                    <div className="course-list-title">
+                        <p>Students: {getStorageItem('currentCourse').students?.length || 0}</p>
+                        <div className="course-list-line"/>
+                        <div className="course-list-entries">
+                            {getStorageItem('currentCourse').students.map((student, index) => (
+                                <p>{student.firstName} {student.lastName}</p>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="course-list-title">
+                        <p>Teachers: {getStorageItem('currentCourse').teachers?.length || 0}</p>
+                        <div className="course-list-line"/>
+                        <div className="course-list-entries">
+                            {getStorageItem('currentCourse').teachers.map((teacher, index) => (
+                                <p>{teacher.firstName} {teacher.lastName}</p>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="course-list-title">
+                        <p>Assignments: {getStorageItem('currentCourse').assignments?.length || 0}</p>
+                        <div className="course-list-line"/>
+                    </div>
                 </div>
             </div>
         ) 
