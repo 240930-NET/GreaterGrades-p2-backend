@@ -14,7 +14,7 @@ const InstitutionTile = () => {
     }
 
     const handleUpdateInstitutionClick = (id) => {
-        setPopupInstitutionId(popupInstitutionId === id ? null : id);
+        setPopupInstitutionId((prevId) => ( prevId === id ? null : id));
     }
 
     return (
