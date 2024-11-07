@@ -5,10 +5,10 @@ import InstitutionTile from "./InstitutionTile";
 
 const InstitutionContent = () => {
     const { currentUser } = useContext(UserContext);
-    const[isPopupOpen, setPopupOpen] = useState(false);
+    const[isAddPopupOpen, setAddPopupOpen] = useState(false);
 
     const handleAddInstitutionClick = () => {
-        setPopupOpen(true);
+        setAddPopupOpen(true);
     };
 
     return (
@@ -22,8 +22,8 @@ const InstitutionContent = () => {
             <div className="dashboard-tiles">
                 <InstitutionTile />
             </div>
-            {isPopupOpen && (
-                <AddInstitutionPopup onClose={() => setPopupOpen(false)} institutionId={currentUser?.institutionId} />
+            {isAddPopupOpen && (
+                <AddInstitutionPopup onClose={() => setAddPopupOpen(false)} institutionId={currentUser?.institutionId} />
             )}
         </div>
     )

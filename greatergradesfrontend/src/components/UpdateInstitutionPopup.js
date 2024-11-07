@@ -20,8 +20,8 @@ const UpdateInstitutionPopup = ({ onClose, institutionId }) => {
     }
 
     return (
-        <div className="popup-overlay">
-            <div className="popup">
+        <div className="institution-popup-overlay">
+            <div className="institution-popup">
                 <h2>Update Institution</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -34,7 +34,7 @@ const UpdateInstitutionPopup = ({ onClose, institutionId }) => {
                             required
                         />
                     </div>
-                    {error && <p className="error">{error}</p>}
+                    {error && <p className="institution-error">{error}</p>}
                     <button type="submit">Submit</button>
                     <button type="button" onClick={onClose}>Cancel</button>
                 </form>
