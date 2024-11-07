@@ -1,4 +1,5 @@
 using GreaterGradesBackend.Domain.Enums;
+using GreaterGradesBackend.Domain.Entities;
 
 namespace GreaterGradesBackend.Api.Models
 {
@@ -10,6 +11,7 @@ namespace GreaterGradesBackend.Api.Models
         public string LastName { get; set; }
         public ICollection<int> ClassIds { get; set; }
         public ICollection<int> TaughtClassIds { get; set; }
+        public ICollection<Grade> Grades { get; set; }
         public Role Role { get; set; }
         public int InstitutionId { get; set; }
     }
