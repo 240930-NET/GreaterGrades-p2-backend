@@ -50,8 +50,8 @@ namespace GreaterGradesBackend.Api.Controllers
             return Ok(new { Token = token });
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet]   
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
