@@ -105,15 +105,17 @@ const Dashboard = () => {
     }, [currentUser, courses]);
 
     const renderContent = () => {
+        console.log("Dashboard setSelectedItem:", setSelectedItem);
+
         switch (selectedItem) {
             case 'dashboard':
-                return <DashboardContent />;
+                return <DashboardContent setSelectedItem={setSelectedItem}/>;
             case 'profile':
                 return <ProfileContent />;
             case 'enrolled classes':
-                return <EnrolledClasses courses={courses} />;
+                return <EnrolledClasses courses={courses} setSelectedItem={setSelectedItem}/>;
             case 'taught classes':
-                return <TaughtClasses />;
+                return <TaughtClasses setSelectedItem={setSelectedItem}/>;
             case 'classes':
                 return <ClassesContent />;
             case 'institutions':

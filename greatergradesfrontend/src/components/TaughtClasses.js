@@ -3,9 +3,11 @@ import { UserContext } from '../functions/UserContext';
 import Tiles from "./Tiles";
 import AddClassPopup from "./AddClassPopup";
 
-const TaughtClasses = () => {
+const TaughtClasses = ({ setSelectedItem }) => {
     const { currentUser } = useContext(UserContext);
     const [isPopupOpen, setPopupOpen] = useState(false);
+    console.log("TaughtClasses setSelectedItem:", setSelectedItem);
+
 
     const handleAddClassClick = () => {
         setPopupOpen(true);
@@ -22,7 +24,7 @@ const TaughtClasses = () => {
                 )}
             </div>
             <div className="dashboard-tiles">
-                <Tiles courseIds={currentUser?.taughtClassIds} />
+                <Tiles courseIds={currentUser?.taughtClassIds} setSelectedItem={setSelectedItem} />
             </div>
             {isPopupOpen && (
                 <AddClassPopup onClose={() => setPopupOpen(false)} institutionId={currentUser.institutionId} />

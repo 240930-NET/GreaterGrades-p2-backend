@@ -4,7 +4,7 @@ import AdminContent from './AdminContent';
 import Tiles from "./Tiles";
 
 
-const DashboardContent = () => {
+const DashboardContent = ({setSelectedItem}) => {
     const { currentUser } = useContext(UserContext);
 
     // if user is student display this
@@ -15,7 +15,7 @@ const DashboardContent = () => {
                     <div>
                         <h3>Enrolled Classes</h3>
                         <div className="student-tiles">
-                            <Tiles />
+                            <Tiles setSelectedItem={setSelectedItem}/>
                         </div>
                     </div>
                 </div>
@@ -26,11 +26,11 @@ const DashboardContent = () => {
                     <div>
                         <h3>Enrolled Classes</h3>
                         <div className="student-tiles">
-                            <Tiles courseIds={currentUser?.classIds} />
+                            <Tiles courseIds={currentUser?.classIds} setSelectedItem={setSelectedItem}/>
                         </div>
                         <h3>Taught Classes</h3>
                         <div className="student-tiles">
-                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                            <Tiles courseIds={currentUser?.taughtClassIds} setSelectedItem={setSelectedItem}/>
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,11 @@ const DashboardContent = () => {
                     <div>
                         <h3>Enrolled Classes</h3>
                         <div className="student-tiles">
-                            <Tiles courseIds={currentUser?.classIds} />
+                            <Tiles courseIds={currentUser?.classIds} setSelectedItem={setSelectedItem}/>
                         </div>
                         <h3>Taught Classes</h3>
                         <div className="student-tiles">
-                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                            <Tiles courseIds={currentUser?.taughtClassIds} setSelectedItem={setSelectedItem}/>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const DashboardContent = () => {
                     <div>
                         <h3>Taught Classes</h3>
                         <div className="student-tiles">
-                            <Tiles courseIds={currentUser?.taughtClassIds} />
+                            <Tiles courseIds={currentUser?.taughtClassIds} setSelectedItem={setSelectedItem}/>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ const DashboardContent = () => {
     // if user is any type of admin return this
     else if (currentUser?.role === 2 || currentUser?.role === 3){
         return (
-            <AdminContent />
+            <AdminContent setSelectedItem={setSelectedItem}/>
         )
     }
 }

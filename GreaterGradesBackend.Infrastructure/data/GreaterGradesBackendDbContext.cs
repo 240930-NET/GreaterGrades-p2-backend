@@ -29,8 +29,8 @@ namespace GreaterGradesBackend.Infrastructure
             /////////////////////////// SEEDING DATA ////////////////////////////////
         
             modelBuilder.Entity<Institution>().HasData(
-                new Institution { InstitutionId = 1, Name = "Institution 1"},
-                new Institution { InstitutionId = 2, Name = "Institution 2"}
+                new Institution { InstitutionId = 1, Name = "Institution 1", Address = "1600 Pennsylvania Avenue NW, Washington, DC 20500"},
+                new Institution { InstitutionId = 2, Name = "Institution 2", Address = "600 1st St W, Mt Vernon, IA 52314"}
             );
 
             modelBuilder.Entity<User>().HasData(

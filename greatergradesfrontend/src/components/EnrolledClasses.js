@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from '../functions/UserContext';
 import Tiles from "./Tiles";
-const EnrolledClasses = () => {
+const EnrolledClasses = ({setSelectedItem}) => {
 
     const { currentUser } = useContext(UserContext);
     console.log(currentUser)
@@ -12,7 +12,7 @@ const EnrolledClasses = () => {
             <div>
                 <h3>Enrolled Classes</h3>
                 <div className="tiles">
-                    <Tiles courseIds={currentUser?.classIds} />
+                    <Tiles courseIds={currentUser?.classIds} setSelectedItem={setSelectedItem} />
                 </div>
             </div>
         </div>

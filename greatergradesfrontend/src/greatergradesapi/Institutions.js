@@ -30,7 +30,7 @@ export const useGetAllInstitutions = () => {
 }
 
 
-export const addInstitution = async (name, authToken) => {
+export const addInstitution = async (name, address, authToken) => {
     try {
         const response = await fetch(`${url}`, {
             method: 'POST',
@@ -38,7 +38,7 @@ export const addInstitution = async (name, authToken) => {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name })
+            body: JSON.stringify({ name, address })
         })
         return await response.json();
     } catch (error) {

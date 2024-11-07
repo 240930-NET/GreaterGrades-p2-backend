@@ -9,6 +9,7 @@ import './styles/course.css'
 import './styles/taughtClasses.css'
 import './styles/addClassPopup.css';
 import './styles/updateInstitutionPopup.css'
+import './styles/userTile.css'
 
 import AppRoutes from './routes/AppRoutes';
 

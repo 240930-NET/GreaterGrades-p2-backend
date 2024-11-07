@@ -6,7 +6,7 @@ import { setStorageItem } from '../functions/LocalStorage';
 const AddClassPopup = ({ onClose, institutionId }) => {
     const [subject, setSubject] = useState('');
     const [error, setError] = useState('');
-    const { currentUser, authToken, setCurrentUser } = useContext(UserContext); // Get currentUser from context
+    const { currentUser, authToken, setCurrentUser } = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

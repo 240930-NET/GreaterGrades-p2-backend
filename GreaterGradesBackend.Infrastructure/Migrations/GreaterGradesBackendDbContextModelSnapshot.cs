@@ -222,6 +222,11 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstitutionId"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -235,11 +240,13 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                         new
                         {
                             InstitutionId = 1,
+                            Address = "1600 Pennsylvania Avenue NW, Washington, DC 20500",
                             Name = "Institution 1"
                         },
                         new
                         {
                             InstitutionId = 2,
+                            Address = "600 1st St W, Mt Vernon, IA 52314",
                             Name = "Institution 2"
                         });
                 });
@@ -290,7 +297,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "student1",
                             InstitutionId = 1,
                             LastName = "student1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJRHJW6Pmt32slfaF6sw/Le4JJ7/jRXWS66renLeG1K7A1CAq/BOl0rQ0OEknVzR6g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO6rKI0RYbgrpI1Hr1uAKUtTuG8R3H+A1jUAWm9BWLGnO7E3916EFVNa6PQnIabi4Q==",
                             Role = 0,
                             Username = "student1"
                         },
@@ -300,7 +307,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "student2",
                             InstitutionId = 2,
                             LastName = "student2",
-                            PasswordHash = "AQAAAAIAAYagAAAAECALOaUuxGCLcAmRjBsYneHJUk8CwZIsALeivrL1yAcRredHuu3/kqgsjnbCuE0/VQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHXz14T30KtTJIsJhWpFz3xaosQ1QSTVzeSVH0B8YfOm8buI0+BPi61q8zN5ppskpg==",
                             Role = 0,
                             Username = "student2"
                         },
@@ -310,7 +317,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "studentTA1",
                             InstitutionId = 1,
                             LastName = "studentTA1",
-                            PasswordHash = "AQAAAAIAAYagAAAAENx+bn7k/Yqqtm5jvOFXHFPBdUfrZKatnXCi31S5R6sKG/CapB1Dj6tUW6fguKJNuA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAUHPRrwX1EKKOUpx/KpAWt7WdyaFYy+vnQZ5+Hhw7zRsa8iFw1F3yhLp4sOOy6j2A==",
                             Role = 0,
                             Username = "studentTA1"
                         },
@@ -320,7 +327,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "studentTA2",
                             InstitutionId = 2,
                             LastName = "studentTA2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMKE9x2/dZ/CU7AkKOsViMhs438nHV68sijI3uWtr/rUjU12cYnF1/ZNLU/PDPKd9g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEADJ48U3a8vmiuo3UqNQ9BqPfNj/QFKU68XR+hiTwz+muUrNEyxHAsOGgrGFmAvHeQ==",
                             Role = 0,
                             Username = "studentTA2"
                         },
@@ -330,7 +337,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "teacher1",
                             InstitutionId = 1,
                             LastName = "teacher1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM2XGT4LyJ+9LnUl1pqGlM6wgFY8r7WeZstOoi6xnCWX5nKh/hhaOx/9NB2T3EJObA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF7EQqiNcFhiWoa3H9deTtTgAtrZGtNwBnSUxPzP0BKqht9/Wij9THcZeZD0JDTPcQ==",
                             Role = 1,
                             Username = "teacher1"
                         },
@@ -340,7 +347,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "teacher2",
                             InstitutionId = 2,
                             LastName = "teacher2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIaVgXGsl5d5QgWoqpWYSqidrhEolRU7G4t/PKWgiSwCq0gfTiWhfbCR435X6I/cOA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGPNN7JHxQj/C7TLqgNGFXNb7Z9ArKqK2yu1N3VqB+tnSbB8LKp1JXUVJJrB89+auw==",
                             Role = 1,
                             Username = "teacher2"
                         },
@@ -350,7 +357,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "teacherST1",
                             InstitutionId = 1,
                             LastName = "teacherST1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHDe0dQFr7Gk62UXKEpX9dBEC3AEOKx0c7a3iQkNwfpSHourB1vOvIj62jaLm82GSg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDqflsmUeiNNlV/TvhnZMqzl6RRh+1GrVHUKgA2oaO94N3QWgrV/vpJFQBwqjcM8kA==",
                             Role = 1,
                             Username = "teacherST1"
                         },
@@ -360,7 +367,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "teacherST2",
                             InstitutionId = 2,
                             LastName = "teacherST2",
-                            PasswordHash = "AQAAAAIAAYagAAAAECgDCjvgyuh8Oq5sunH+1uQkLcod+s+wpiKAItYutp3tUwj29mnMzkzOX1CFToU2Sg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKXlVc1g2EXcJ5p2nAjUNLeyoh1Q0Zoix2Hb76In5irEoWv+qyB/3VwWbCCUevni7Q==",
                             Role = 1,
                             Username = "teacherST2"
                         },
@@ -370,7 +377,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "iadmin1",
                             InstitutionId = 1,
                             LastName = "iadmin1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPAMXd2wzUVNeSJMi/+FprLwxwpV5c/tid9hv81i4bzNgUgeMprGKsEtcAun/VCoDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECGokhPYA2uCSyqrPZFb2CYHpUKd5tuHUSby+loX92SAU3rfg5tLwJWoEdn9xzximg==",
                             Role = 2,
                             Username = "iadmin1"
                         },
@@ -380,7 +387,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "iadmin2",
                             InstitutionId = 2,
                             LastName = "iadmin2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBxxYndS6KGQe8Q1lGv8Nnd1n/g7dmNWgZiWFkvDMcaCIyco8jSqisBoZ16tl3mpGQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIzAsVKZAVX7WvfRbOgpzDyYVs5sqADfz4xm0myaqfgFuzJC5LvmYdPK2JD/LKylKw==",
                             Role = 2,
                             Username = "iadmin2"
                         },
@@ -390,7 +397,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "admin1",
                             InstitutionId = 1,
                             LastName = "admin1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI7Fh7wNrcXXP9CiRxKM5W1+ygQ7DHzpyvjtmknvAiLPrTSjFuOfTsJz9q0r6e4deQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEZUxo+6PfJClnU1xj6DPetE3EhqHZmduWGbsnI14x9TWSK9DlDb3uoGjdhwvLWW/Q==",
                             Role = 3,
                             Username = "admin1"
                         },
@@ -400,7 +407,7 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                             FirstName = "admin2",
                             InstitutionId = 2,
                             LastName = "admin2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMuD7n4gqGoRsJPsnVR9nFggbAe368sBQdL26RCNc/eIXH0/UYe3tpxNMRdkmQnGXw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHbbLB/+uT8bS81Zi2wRd/H/9HTCoZazpOYeAOQNXvIfLyZhA92qEDq4rMibK15Dbg==",
                             Role = 3,
                             Username = "admin2"
                         });

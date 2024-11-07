@@ -15,6 +15,11 @@ namespace GreaterGradesBackend.Domain.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
+
+        [Required]
+        [MaxLength(200)]
+        public string Address { get; set; }
+
         public ICollection<User> Users { get; set; }
         public ICollection<Class> Classes { get; set; }
 

@@ -2,18 +2,20 @@ import { useGetUsersClasses } from "../greatergradesapi/Classes";
 import forestImage from "../images/forest.jfif";
 import { setStorageItem } from '../functions/LocalStorage';
 
-const Tiles = ({ courseIds }) => {
+const Tiles = ({ courseIds, setSelectedItem }) => { 
     const classes = useGetUsersClasses(courseIds);
-    console.log(classes)
+    console.log(classes);
 
     const clickOnCourse = (course) => {
         setStorageItem('currentCourse', course);
+        console.log("setSelectedItem:", setSelectedItem);
+        setSelectedItem('course info');
     };
 
     return (
         <div className="tiles-container">
             {classes.map((course, index) => (
-                <button onClick={clickOnCourse(course)} className="dashboard-tile-link">
+                <button key={index} onClick={() => clickOnCourse(course)} className="dashboard-tile-link">
                     <div className="dashboard-tile">
                         <h3 className="tile-title">{course.subject}</h3>
                         <img src={forestImage} alt="Course placeholder" className="tile-image" />

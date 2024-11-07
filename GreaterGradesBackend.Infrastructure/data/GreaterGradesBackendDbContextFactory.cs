@@ -14,8 +14,9 @@ namespace GreaterGradesBackend.Infrastructure
             // Build configuration
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("C:/Users/Rylan/Desktop/training/GreaterGrades-p2/GreaterGradesBackend.Api/appsettings.json")
+                .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), @"..\GreaterGradesBackend.Api\appsettings.json"))
                 .Build();
+
 
             // Create options for DbContext
             var optionsBuilder = new DbContextOptionsBuilder<GreaterGradesBackendDbContext>();
