@@ -117,7 +117,7 @@ const Dashboard = () => {
             case 'taught classes':
                 return <TaughtClasses setSelectedItem={setSelectedItem}/>;
             case 'classes':
-                return <ClassesContent />;
+                return <ClassesContent setSelectedItem={setSelectedItem}/>;
             case 'institutions':
                 return <InstitutionContent />
             case 'course info':

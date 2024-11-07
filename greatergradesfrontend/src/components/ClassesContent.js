@@ -4,7 +4,7 @@ import { useGetAllClasses } from "../greatergradesapi/Classes";
 import Tiles from "./Tiles";
 import AddClassPopup from "./AddClassPopup";
 
-const ClassesContent = () => {
+const ClassesContent = ({setSelectedItem}) => {
     const allClasses = useGetAllClasses();
     const classIds = allClasses.flatMap(course => course.classId);
     const { currentUser } = useContext(UserContext);
@@ -23,7 +23,7 @@ const ClassesContent = () => {
                 </button>
             </div>
             <div className="dashboard-tiles">
-                <Tiles courseIds={classIds} />
+                <Tiles courseIds={classIds} setSelectedItem={setSelectedItem}/>
             </div>
             {isPopupOpen && (
                 <AddClassPopup onClose={() => setPopupOpen(false)} institutionId={currentUser?.institutionId} />

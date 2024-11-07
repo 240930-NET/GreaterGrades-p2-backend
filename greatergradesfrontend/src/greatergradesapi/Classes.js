@@ -133,72 +133,52 @@ export const addTeacherToClass = async (id, teacherId, authToken) => {
 };
 
 
-export const useDeleteStudentFromClass = (id, studentId) => {
-    const { authToken } = useContext(UserContext);
+export const addStudentToClass = async (id, studentId, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}/students/${studentId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+        });
+        if (response.status !== 204) throw new Error("Failed to add teacher");
+    } catch (error) {
+        console.error("Error adding teacher to class:", error);
+    }
+};
 
-    useEffect(() => {
-        const fetchDeleteStudentFromClass = async () => {
-            try {
-                const response = await fetch(`${url}${id}/students/${studentId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error adding student to class")
-            }
-        }
-        if (authToken && id && studentId) fetchDeleteStudentFromClass();
-    }, [authToken, id, studentId])
+
+
+export const deleteTeacherFromClass = async (id, teacherId, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+        })
+        if (response.status !== 204) throw new Error();
+    } catch {
+        console.error("Error adding teacher to class")
+    }
 }
 
 
-export const useAddTeacherToClass = (id, teacherId) => {
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchAddTeacherToClass = async () => {
-            try {
-                const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error adding teacher to class")
-            }
-        }
-        if (authToken && id && teacherId) fetchAddTeacherToClass();
-    }, [authToken, id, teacherId])
-}
-
-
-export const useDeleteTeacherFromClass = (id, teacherId) => {
-    const { authToken } = useContext(UserContext);
-
-    useEffect(() => {
-        const fetchDeleteTeacherFromClass = async () => {
-            try {
-                const response = await fetch(`${url}${id}/teachers/${teacherId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                if (response.status !== 204) throw new Error();
-            } catch {
-                console.error("Error adding teacher to class")
-            }
-        }
-        if (authToken && id && teacherId) fetchDeleteTeacherFromClass();
-    }, [authToken, id, teacherId])
+export const deleteStudentFromClass = async (id, studentId, authToken) => {
+    try {
+        const response = await fetch(`${url}${id}/students/${studentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+        })
+        if (response.status !== 204) throw new Error();
+    } catch {
+        console.error("Error adding teacher to class")
+    }
 }
 
 //// Fetches not specifially tied to a single endpoint
