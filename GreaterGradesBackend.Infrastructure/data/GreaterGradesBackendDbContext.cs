@@ -66,14 +66,14 @@ namespace GreaterGradesBackend.Infrastructure
             );
             
             modelBuilder.Entity<Assignment>().HasData(
-                new Assignment {AssignmentId = 1, Name = "assignment1", ClassId = 1},
-                new Assignment {AssignmentId = 2, Name = "assignment2", ClassId = 2},
-                new Assignment {AssignmentId = 3, Name = "assignment3", ClassId = 3},
-                new Assignment {AssignmentId = 4, Name = "assignment4", ClassId = 4},
-                new Assignment {AssignmentId = 5, Name = "assignment5", ClassId = 5},
-                new Assignment {AssignmentId = 6, Name = "assignment6", ClassId = 6},
-                new Assignment {AssignmentId = 7, Name = "assignment7", ClassId = 7},
-                new Assignment {AssignmentId = 8, Name = "assignment8", ClassId = 8}
+                new Assignment {AssignmentId = 1, Name = "assignment1", ClassId = 1, MaxScore = 100},
+                new Assignment {AssignmentId = 2, Name = "assignment2", ClassId = 2, MaxScore = 100},
+                new Assignment {AssignmentId = 3, Name = "assignment3", ClassId = 3, MaxScore = 100},
+                new Assignment {AssignmentId = 4, Name = "assignment4", ClassId = 4, MaxScore = 100},
+                new Assignment {AssignmentId = 5, Name = "assignment5", ClassId = 5, MaxScore = 100},
+                new Assignment {AssignmentId = 6, Name = "assignment6", ClassId = 6, MaxScore = 100},
+                new Assignment {AssignmentId = 7, Name = "assignment7", ClassId = 7, MaxScore = 100},
+                new Assignment {AssignmentId = 8, Name = "assignment8", ClassId = 8, MaxScore = 100}
             );
 
             modelBuilder.Entity<Grade>().HasData(

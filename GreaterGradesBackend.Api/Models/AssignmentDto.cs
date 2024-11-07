@@ -10,5 +10,7 @@ namespace GreaterGradesBackend.Api.Models
         public int ClassId { get; set; }
 
         public ICollection<GradeDto> Grades { get; set; }
+
+        public int MaxScore { get; set; }
     }
 }

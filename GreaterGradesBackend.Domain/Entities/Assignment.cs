@@ -18,6 +18,9 @@ namespace GreaterGradesBackend.Domain.Entities
         // Relationship to Class
         [Required]
         public int ClassId { get; set; }
+
+        [Required]
+        public int MaxScore { get; set; }
         public Class Class { get; set; }  // Navigation property
 
         public ICollection<Grade> Grades { get; set; }
