@@ -8,7 +8,7 @@ const AddStudentToClassPopup = ({ onClose, courseId }) => {
     const [error, setError] = useState('');
     const { currentUser, authToken } = useContext(UserContext);
     var users = useGetAllUsers();
-    users = users.filter(user => user.institutionId == currentUser.institutionId);
+    users = users.filter(user => user.institutionId === currentUser.institutionId);
     
 
     const handleSubmit = async (e) => {
