@@ -5,11 +5,14 @@ import UserTile from './UserTile';
 import { RoleEnum } from "../enum/Role";
 import { deleteStudentFromClass } from "../greatergradesapi/Classes";
 import AddStudentToClassPopup from './AddStudentToClassPopup';
+import AssignmentTile from './AssignmentTile';
+import AddAssignmentPopup from './AddAssignmentPopup';
 
 const CourseContent = () => {
     const { currentUser, authToken } = useContext(UserContext);
     const currentCourse = getStorageItem('currentCourse');
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isAssignmentPopupOpen, setIsAssignmentPopupOpen] = useState(false);
 
     const handleDeleteStudent = async (studentId) => {
         try {
@@ -26,16 +29,16 @@ const CourseContent = () => {
 
     return (
         <div className="course-content">
-            <h3 className="course-title">{currentCourse.subject}</h3>
+            <h3 className="course-title">{currentCourse?.subject}</h3>
             <div className="course-body">
                 <div className="course-list-title">
-                    <p>Students: {currentCourse.students?.length || 0}</p>
+                    <p>Students: {currentCourse?.students?.length || 0}</p>
                     {isTeacherOrAdmin && (
                         <button onClick={() => setIsPopupOpen(true)}>Add Student</button>
                     )}
                     <div className="course-list-line" />
                     <div className="course-list-entries">
-                        {currentCourse.students.map((student, index) => (
+                        {currentCourse?.students.map((student, index) => (
                             <UserTile
                                 key={index}
                                 firstName={student.firstName}
@@ -48,10 +51,10 @@ const CourseContent = () => {
                     </div>
                 </div>
                 <div className="course-list-title">
-                    <p>Teachers: {currentCourse.teachers?.length || 0}</p>
+                    <p>Teachers: {currentCourse?.teachers?.length || 0}</p>
                     <div className="course-list-line" />
                     <div className="course-list-entries">
-                        {currentCourse.teachers.map((teacher, index) => (
+                        {currentCourse?.teachers.map((teacher, index) => (
                             <UserTile
                                 key={index}
                                 firstName={teacher.firstName}
@@ -62,14 +65,31 @@ const CourseContent = () => {
                     </div>
                 </div>
                 <div className="course-list-title">
-                    <p>Assignments: {currentCourse.assignments?.length || 0}</p>
+                    <p>Assignments: {currentCourse?.assignments?.length || 0}</p>
+                    {isTeacherOrAdmin && (
+                        <button onClick={() => setIsAssignmentPopupOpen(true)}>Add Assignment</button>
+                    )}
                     <div className="course-list-line" />
+                    <div className='course-list-entries'>
+                        {currentCourse?.assignments.map((assignment, index) => (
+                            <AssignmentTile 
+                                key={index}
+                                assignment={assignment}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             {isPopupOpen && (
                 <AddStudentToClassPopup 
                     onClose={() => setIsPopupOpen(false)} 
-                    courseId={currentCourse.classId} 
+                    courseId={currentCourse?.classId} 
+                />
+            )}
+            {isAssignmentPopupOpen && (
+                <AddAssignmentPopup
+                    onClose={() => setIsAssignmentPopupOpen(false)}
+                    classId={currentCourse?.classId}
                 />
             )}
         </div>
