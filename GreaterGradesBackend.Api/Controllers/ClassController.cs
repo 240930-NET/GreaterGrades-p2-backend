@@ -206,6 +206,7 @@ namespace GreaterGradesBackend.Api.Controllers
         [HttpDelete("{id}/students/{studentId}")]
         public async Task<IActionResult> RemoveStudentFromClass(int id, int studentId)
         {
+            Console.WriteLine("ITS DOING SOMTHING \n\n\n\n\n\n\n");
             var currentUserRole = User.FindFirst(ClaimTypes.Role)?.Value;
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.Name)?.Value);
             var user = await _userService.GetUserByIdAsync(currentUserId);

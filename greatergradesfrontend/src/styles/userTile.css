@@ -18,3 +18,14 @@
     font-size: 0.9em;
     color: #777;
 }
+.delete-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #d9534f;
+    margin-left: 10px;
+}
+.delete-icon:hover {
+    color: #c9302c;
+}

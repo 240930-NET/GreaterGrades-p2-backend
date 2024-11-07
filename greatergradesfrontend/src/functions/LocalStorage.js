@@ -12,7 +12,6 @@ export function setStorageItem(key, value) {
 
 export function checkExpired(key) {
     const token = localStorage.getItem(key);
-    console.log("Checking token:", key, token); // Debugging log
     if (!token) {
         return true;
     }
@@ -20,8 +19,6 @@ export function checkExpired(key) {
     try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
-        console.log("Token expiration:", decodedToken.exp, "Current time:", currentTime); // Debugging log
-
         if (decodedToken.exp < currentTime) {
             localStorage.removeItem(key);
             return true;

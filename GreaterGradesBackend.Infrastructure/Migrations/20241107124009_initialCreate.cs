@@ -7,7 +7,7 @@
 namespace GreaterGradesBackend.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,7 +77,8 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                     AssignmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ClassId = table.Column<int>(type: "int", nullable: false)
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    MaxScore = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,33 +196,33 @@ namespace GreaterGradesBackend.Infrastructure.Migrations
                 columns: new[] { "UserId", "FirstName", "InstitutionId", "LastName", "PasswordHash", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 1, "student1", 1, "student1", "AQAAAAEAACcQAAAAEO6rKI0RYbgrpI1Hr1uAKUtTuG8R3H+A1jUAWm9BWLGnO7E3916EFVNa6PQnIabi4Q==", 0, "student1" },
-                    { 2, "student2", 2, "student2", "AQAAAAEAACcQAAAAEHXz14T30KtTJIsJhWpFz3xaosQ1QSTVzeSVH0B8YfOm8buI0+BPi61q8zN5ppskpg==", 0, "student2" },
-                    { 3, "studentTA1", 1, "studentTA1", "AQAAAAEAACcQAAAAEAUHPRrwX1EKKOUpx/KpAWt7WdyaFYy+vnQZ5+Hhw7zRsa8iFw1F3yhLp4sOOy6j2A==", 0, "studentTA1" },
-                    { 4, "studentTA2", 2, "studentTA2", "AQAAAAEAACcQAAAAEADJ48U3a8vmiuo3UqNQ9BqPfNj/QFKU68XR+hiTwz+muUrNEyxHAsOGgrGFmAvHeQ==", 0, "studentTA2" },
-                    { 5, "teacher1", 1, "teacher1", "AQAAAAEAACcQAAAAEF7EQqiNcFhiWoa3H9deTtTgAtrZGtNwBnSUxPzP0BKqht9/Wij9THcZeZD0JDTPcQ==", 1, "teacher1" },
-                    { 6, "teacher2", 2, "teacher2", "AQAAAAEAACcQAAAAEGPNN7JHxQj/C7TLqgNGFXNb7Z9ArKqK2yu1N3VqB+tnSbB8LKp1JXUVJJrB89+auw==", 1, "teacher2" },
-                    { 7, "teacherST1", 1, "teacherST1", "AQAAAAEAACcQAAAAEDqflsmUeiNNlV/TvhnZMqzl6RRh+1GrVHUKgA2oaO94N3QWgrV/vpJFQBwqjcM8kA==", 1, "teacherST1" },
-                    { 8, "teacherST2", 2, "teacherST2", "AQAAAAEAACcQAAAAEKXlVc1g2EXcJ5p2nAjUNLeyoh1Q0Zoix2Hb76In5irEoWv+qyB/3VwWbCCUevni7Q==", 1, "teacherST2" },
-                    { 9, "iadmin1", 1, "iadmin1", "AQAAAAEAACcQAAAAECGokhPYA2uCSyqrPZFb2CYHpUKd5tuHUSby+loX92SAU3rfg5tLwJWoEdn9xzximg==", 2, "iadmin1" },
-                    { 10, "iadmin2", 2, "iadmin2", "AQAAAAEAACcQAAAAEIzAsVKZAVX7WvfRbOgpzDyYVs5sqADfz4xm0myaqfgFuzJC5LvmYdPK2JD/LKylKw==", 2, "iadmin2" },
-                    { 11, "admin1", 1, "admin1", "AQAAAAEAACcQAAAAEEZUxo+6PfJClnU1xj6DPetE3EhqHZmduWGbsnI14x9TWSK9DlDb3uoGjdhwvLWW/Q==", 3, "admin1" },
-                    { 12, "admin2", 2, "admin2", "AQAAAAEAACcQAAAAEHbbLB/+uT8bS81Zi2wRd/H/9HTCoZazpOYeAOQNXvIfLyZhA92qEDq4rMibK15Dbg==", 3, "admin2" }
+                    { 1, "student1", 1, "student1", "AQAAAAEAACcQAAAAEEy4rD9aLC3dj4HArMQC6nXcrMIhO244V3Kp54hzOmhZPTJlTAIXlCVSEmSBWFs3xA==", 0, "student1" },
+                    { 2, "student2", 2, "student2", "AQAAAAEAACcQAAAAEDYnocpr9lktvYibUe2HvUwGBhBBDG+3wGIgYAHsZZhIyOeWRkKzCuEKzC4xkK84Kg==", 0, "student2" },
+                    { 3, "studentTA1", 1, "studentTA1", "AQAAAAEAACcQAAAAEGiLs2fq63or9xPYLpW9x7ciui+sNQgRJNfu8U9Dl7Ep60DdRUFd6LqnbaWfLEoM/g==", 0, "studentTA1" },
+                    { 4, "studentTA2", 2, "studentTA2", "AQAAAAEAACcQAAAAEALd6bXNq19BrJkDuaT7kjBjZpZ0orEy+3HKWxrNceRzwTbOxaw0kxy/DHEmlg371w==", 0, "studentTA2" },
+                    { 5, "teacher1", 1, "teacher1", "AQAAAAEAACcQAAAAED7mS4xutH5/2N1rT/VGRsvRCV3pw7PnaVynWtvJc2qh03zkxP31YRs938YUov99Qg==", 1, "teacher1" },
+                    { 6, "teacher2", 2, "teacher2", "AQAAAAEAACcQAAAAEE6/XuXUyxyrJ57+O6wi116mAPsFpDNJIXSUqWfSo+ckh0o4BeFF+wFWw18iRu9cDw==", 1, "teacher2" },
+                    { 7, "teacherST1", 1, "teacherST1", "AQAAAAEAACcQAAAAEKgm9+FXVcVq+OmKH06UeN7vFojgWW00s++dosGowPISy9zxzVksdodNBP9FK0K9IA==", 1, "teacherST1" },
+                    { 8, "teacherST2", 2, "teacherST2", "AQAAAAEAACcQAAAAEF57mLUK1yIUc7rAEIxuE6qkrWLhXXhnLJFbSBzpVEumDLKGdt0kC5bhI2emlUaeAA==", 1, "teacherST2" },
+                    { 9, "iadmin1", 1, "iadmin1", "AQAAAAEAACcQAAAAEMitdprP4FYTaI+rySAv3iImy3YJ2Y/97AEuCZD1A0bbateUZaHb3MrncP4NW2ivqA==", 2, "iadmin1" },
+                    { 10, "iadmin2", 2, "iadmin2", "AQAAAAEAACcQAAAAEBT489P6jMMkM+Y6B9YtuqLk01m5o4Q2UBJuiE2Np8kYlaB8Px9OjuI4l87vFLGQlQ==", 2, "iadmin2" },
+                    { 11, "admin1", 1, "admin1", "AQAAAAEAACcQAAAAEG8lhxKmxqTkF5wvqh2rELPc73HcmbL/m4/BjIpTkqQA/twp3eu7NQbUl474QPlziw==", 3, "admin1" },
+                    { 12, "admin2", 2, "admin2", "AQAAAAEAACcQAAAAEJ9Ujbj2CSMnxuB/42mR9PgJTDuEk9HKAK/gyg+fG5/IgDhpo2T7EHr2jmDNqKULOg==", 3, "admin2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Assignments",
-                columns: new[] { "AssignmentId", "ClassId", "Name" },
+                columns: new[] { "AssignmentId", "ClassId", "MaxScore", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "assignment1" },
-                    { 2, 2, "assignment2" },
-                    { 3, 3, "assignment3" },
-                    { 4, 4, "assignment4" },
-                    { 5, 5, "assignment5" },
-                    { 6, 6, "assignment6" },
-                    { 7, 7, "assignment7" },
-                    { 8, 8, "assignment8" }
+                    { 1, 1, 100, "assignment1" },
+                    { 2, 2, 100, "assignment2" },
+                    { 3, 3, 100, "assignment3" },
+                    { 4, 4, 100, "assignment4" },
+                    { 5, 5, 100, "assignment5" },
+                    { 6, 6, 100, "assignment6" },
+                    { 7, 7, 100, "assignment7" },
+                    { 8, 8, 100, "assignment8" }
                 });
 
             migrationBuilder.InsertData(

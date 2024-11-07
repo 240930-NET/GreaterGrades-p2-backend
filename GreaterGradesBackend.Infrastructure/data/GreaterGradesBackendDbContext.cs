@@ -142,6 +142,7 @@ namespace GreaterGradesBackend.Infrastructure
                 .WithMany(i => i.Classes)
                 .HasForeignKey(c => c.InstitutionId) // Explicitly set InstitutionId as the foreign key
                 .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }
