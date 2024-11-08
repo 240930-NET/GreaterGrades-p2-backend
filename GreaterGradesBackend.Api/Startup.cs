@@ -126,14 +126,13 @@ namespace GreaterGradesBackend.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GreaterGradesBackendDbContext dbContext)
         {
-            if (env.IsDevelopment())
-            {
+            
                 app.UseDeveloperExceptionPage();
 
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreaterGradesBackend API V1"));
-            }
+            
 
             dbContext.Database.Migrate();
 
