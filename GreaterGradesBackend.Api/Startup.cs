@@ -34,7 +34,7 @@ namespace GreaterGradesBackend.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GreaterGradesBackendDbContext>(options =>
-                options.UseSqlServer("Server=tcp:greatergradesserver.database.windows.net,1433;Initial Catalog=greatergradesdatabase;Persist Security Info=False;User ID=greatergrades;Password=GGpassword123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IClassService, ClassService>();
