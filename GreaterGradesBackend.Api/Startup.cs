@@ -34,7 +34,7 @@ namespace GreaterGradesBackend.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GreaterGradesBackendDbContext>(options =>
-                options.UseSqlServer("Server=tcp:revature-demo.database.windows.net,1433;Initial Catalog=greatergradesdatabase;Persist Security Info=False;User ID=Rylan;Password=password123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options.UseSqlServer("Server=tcp:greatergradesserver.database.windows.net,1433;Initial Catalog=greatergradesdatabase;Persist Security Info=False;User ID=greatergrades;Password=GGpassword123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IClassService, ClassService>();
@@ -126,17 +126,18 @@ namespace GreaterGradesBackend.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GreaterGradesBackendDbContext dbContext)
         {
-            
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
 
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreaterGradesBackend API V1"));
-            
+            }
 
             dbContext.Database.Migrate();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
