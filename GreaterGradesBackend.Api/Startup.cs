@@ -76,7 +76,7 @@ namespace GreaterGradesBackend.Api
             {
                 options.AddPolicy("FrontendPolicy", builder =>
                 {
-                    builder.WithOrigins("http://localhost:5000", "http://localhost:3000", "https://greatergradesapi.azurewebsites.net/") // We can change this line to allow whatever origin we need
+                    builder.AllowAnyOrigin() // We can change this line to allow whatever origin we need
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
