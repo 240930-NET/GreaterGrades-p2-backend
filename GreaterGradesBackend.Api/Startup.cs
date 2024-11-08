@@ -137,7 +137,7 @@ namespace GreaterGradesBackend.Api
 
             dbContext.Database.Migrate();
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
